@@ -2,222 +2,376 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Web de GABOXZTV</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GABOXZTV</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #00ff00;
+      --green-dim: #00cc00;
+      --bg: #0b0b0b;
+      --bg2: #111111;
+      --bg3: #1a1a1a;
+      --text: #ffffff;
+      --text-dim: rgba(255,255,255,0.6);
+    }
+
     body {
-      background-color: #0b0b0b;
-      color: #ffffff;
+      background-color: var(--bg);
+      color: var(--text);
       font-family: Arial, sans-serif;
-      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
+    /* HEADER */
     header {
-      background-color: #1a1a1a;
+      background-color: var(--bg3);
       text-align: center;
-      padding: 30px;
-      border-bottom: 3px solid #00ff00;
+      padding: 36px 20px 28px;
+      border-bottom: 3px solid var(--green);
+      position: relative;
+      overflow: hidden;
     }
-
-    h1, h2 {
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,255,0,0.03) 3px,
+        rgba(0,255,0,0.03) 4px
+      );
+      pointer-events: none;
+    }
+    header h1 {
       font-family: 'Press Start 2P', cursive;
-      color: #00ff00;
+      color: var(--green);
+      font-size: clamp(14px, 3vw, 24px);
+      text-shadow: 0 0 20px rgba(0,255,0,0.5);
+      position: relative;
+    }
+    header p {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--text-dim);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      position: relative;
     }
 
-    section {
-      padding: 20px;
-      text-align: center;
+    /* NAV BOTONES */
+    .nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 28px 20px;
+      background-color: var(--bg2);
+      border-bottom: 1px solid rgba(0,255,0,0.15);
     }
 
-    .button {
-      background-color: #00ff00;
-      color: #000;
-      padding: 12px 20px;
-      margin: 10px;
-      border: none;
-      border-radius: 5px;
+    .btn {
+      background-color: transparent;
+      color: var(--green);
+      padding: 12px 18px;
+      border: 2px solid var(--green);
+      border-radius: 4px;
       cursor: pointer;
       font-family: 'Press Start 2P', cursive;
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 10px;
+      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+    .btn:hover {
+      background-color: rgba(0,255,0,0.1);
+      box-shadow: 0 0 12px rgba(0,255,0,0.4);
+      transform: scale(1.04);
+    }
+    .btn.active {
+      background-color: var(--green);
+      color: #000;
+      box-shadow: 0 0 16px rgba(0,255,0,0.5);
     }
 
-    .button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 10px #00ff00;
+    /* AVISO */
+    .aviso {
+      max-width: 700px;
+      margin: 20px auto 0;
+      padding: 10px 16px;
+      background: rgba(0,255,0,0.06);
+      border-left: 3px solid var(--green-dim);
+      border-radius: 0 4px 4px 0;
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      text-align: left;
     }
 
+    /* SECCIONES */
     .seccion {
       display: none;
-      padding: 30px;
-      background-color: #111;
-      min-height: 60vh;
-      text-align: center;
+      padding: 36px 20px;
+      background-color: var(--bg2);
+      min-height: 40vh;
+      animation: fadeIn 0.2s ease;
+    }
+    .seccion.visible { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    footer {
+    .seccion h2 {
+      font-family: 'Press Start 2P', cursive;
+      color: var(--green);
+      font-size: clamp(11px, 2vw, 16px);
       text-align: center;
-      padding: 15px;
+      margin-bottom: 28px;
+    }
+
+    /* LISTA DE JUEGOS */
+    .juegos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .juego-card {
+      background: var(--bg3);
+      border: 1px solid rgba(0,255,0,0.2);
+      border-radius: 6px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+    .juego-card:hover { border-color: rgba(0,255,0,0.5); }
+
+    .juego-nombre {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 9px;
+      color: var(--green);
+    }
+
+    .btn-descarga {
+      display: inline-block;
+      background-color: var(--green);
+      color: #000;
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 8px;
+      text-decoration: none;
+      text-align: center;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn-descarga:hover { opacity: 0.85; transform: scale(1.03); }
+
+    .proximo {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13px;
+      padding: 40px 0;
+    }
+
+    /* ENLACES */
+    .enlaces-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .enlace-card {
+      background: var(--bg3);
+      border: 1px solid rgba(0,255,0,0.2);
+      border-radius: 6px;
+      padding: 16px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--green);
+      font-size: 13px;
+      transition: background 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .enlace-card:hover {
+      background: rgba(0,255,0,0.08);
+      border-color: rgba(0,255,0,0.5);
+    }
+    .enlace-icono { font-size: 22px; }
+    .enlace-nombre { font-family: 'Press Start 2P', cursive; font-size: 8px; }
+    .enlace-desc { font-size: 11px; color: var(--text-dim); }
+
+    /* FOOTER */
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 16px;
       background-color: #0f0f0f;
-      font-size: 12px;
-      opacity: 0.6;
+      font-size: 11px;
+      color: var(--text-dim);
+      border-top: 1px solid rgba(0,255,0,0.1);
+    }
+
+    /* SKIN FIJA */
+    .skin-fixed {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      width: 72px;
+      opacity: 0.55;
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    @media (max-width: 480px) {
+      .skin-fixed { width: 50px; bottom: 10px; right: 10px; }
     }
   </style>
 </head>
-
 <body>
 
 <header>
-  <h1>Web de GaboxzTV</h1>
+  <h1>GABOXZTV</h1>
+  <p>Página inspirada en juegos de optimización.<br>Todos los links de OptiJuegos disponibles aquí.</p>
 </header>
 
-<section>
-  xto de descripción debajo de los botones
+<nav class="nav">
+  <button class="btn" onclick="toggle('menos2gb', this)">Juegos &lt; 2 GB</button>
+  <button class="btn" onclick="toggle('menos4gb', this)">Juegos &lt; 4 GB</button>
+  <button class="btn" onclick="toggle('programas', this)">Programas</button>
+  <button class="btn" onclick="toggle('enlaces', this)">Enlaces</button>
+</nav>
 
-
-
-  
-<p style="max-width: 800px; margin: 20px auto; opacity: 0.7; font-size: 14px;">
-  Esta página está inspirada en juegos de optimización.  
-  Todos los links de OptiJuegos estarán disponibles aquí abajo.
-</p>
-  <button class="button" onclick="mostrarSeccion('menos2gb')">
-    Juegos &lt; 2 GB
-  </button>
-
-  <button class="button" onclick="mostrarSeccion('menos4gb')">
-    Juegos &lt; 4 GB
-  </button>
-
-  <button class="button" onclick="mostrarSeccion('programas')">
-    Programas
-  </button>
-</section>
-  <p style="max-width: 800px; margin: 20px auto; opacity: 0.7; font-size: 14px; text-align:center;">
-los archivo de  descarga no tienen virus, solo que el antivirus lo detecta por el crak que tienen los juegos 
-</p>
-  <div style="max-width:800px; margin: 0 auto 30px; padding: 20px; text-align:center;">
-  <h2 style="color:#00ff00; font-family:'Press Start 2P', cursive;">
-    ENLACES
-  </h2>
-
-  <p>
-    <a href="https://m.youtube.com/@OptiProjects" target="_blank" style="color:#00ff00; text-decoration:none;">
-      🎮 OptiProjects
-    </a>
-  </p>
-
-  <p>
-    <a href="https://optijuegos.net/" target="_blank" style="color:#00ff00; text-decoration:none;">
-      🔗 OptiJuegos
-    </a>
-  </p>
-
-  <p>
-    <a href="https://kick.com/xzgabotv" target="_blank" style="color:#00ff00; text-decoration:none;">
-      🟣 Kick – xzgabotv
-    </a>
-  </p>
-
-  <p>
-    <a  href="https://www.youtube.com/@zgaboxz" target="_blank" style="color:#00ff00; text-decoration:none;">
-      ▶ Mi canal de YouTube
-    </a>
-  </p>
-    <a href="https://docs.google.com/document/d/e/2PACX-1vQDQUYi7IMbrhOmVjssl-Dz6E5SPF457ar8yMFhFeWMKnw90YPKKCZI-A8uz9sneIzn_qE1-Q8Uf1sx/pub"
-   target="_blank"
-   class="button">
-  📄 SOBRE MI:)
-</a>
+<div style="max-width:700px; margin: 20px auto; padding: 0 20px;">
+  <div class="aviso">
+    ⚠️ Los archivos no tienen virus. El antivirus los detecta por el crack que incluyen los juegos.
+  </div>
 </div>
 
+<!-- MENOS 2 GB -->
 <div id="menos2gb" class="seccion">
-  <h2>Juegos con menos de 2 GB</h2>
-  <p>✔ GEOMETRY DASH
-    <br>
-  <a href="https://www.mediafire.com/file/kybq76zj8r8nu5i/GeometryDash_normal_un_poco_optimizado.apk/file" target="_blank"
-     style="color:#00ff00; text-decoration:none;">
-     DESCARGA (MEDIAFIRE)
-  </a>
-  </p>
+  <h2>Juegos &lt; 2 GB</h2>
+  <div class="juegos-grid">
 
-</a>
-  ✔ TERRARIA  
-  <br>
-  <a href="https://www.mediafire.com/file/f2ho9pm4fqwwyyz/terrari+optimizada+v1+GABOXZTV.7z/file" target="_blank"
-     style="color:#00ff00; text-decoration:none;">
-     DESCARGA (MEDIAFIRE)
-  </a>
-</p>
-  
-</a>
-  ✔ WORLD_BOX
-   <br>
-  <a href="https://www.mediafire.com/file/5hlhd9iwqlzp6et/worldbox.7z/file" target="_blank"
-     style="color:#00ff00; text-decoration:none;">
-     DESCARGA (MEDIAFIRE)
-</p>
+    <div class="juego-card">
+      <div class="juego-nombre">Geometry Dash</div>
+      <a href="https://www.mediafire.com/file/kybq76zj8r8nu5i/GeometryDash_normal_un_poco_optimizado.apk/file"
+         target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
+    </div>
+
+    <div class="juego-card">
+      <div class="juego-nombre">Terraria</div>
+      <a href="https://www.mediafire.com/file/f2ho9pm4fqwwyyz/terrari+optimizada+v1+GABOXZTV.7z/file"
+         target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
+    </div>
+
+    <div class="juego-card">
+      <div class="juego-nombre">WorldBox</div>
+      <a href="https://www.mediafire.com/file/5hlhd9iwqlzp6et/worldbox.7z/file"
+         target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
+    </div>
+
+  </div>
 </div>
 
+<!-- MENOS 4 GB -->
 <div id="menos4gb" class="seccion">
-  <h2>Juegos con mas de 4 GB</h2>
-  <p>Próximamente…</p>
+  <h2>Juegos &lt; 4 GB</h2>
+  <div class="proximo">🕹 Próximamente…</div>
 </div>
 
+<!-- PROGRAMAS -->
 <div id="programas" class="seccion">
   <h2>Programas</h2>
-  <p>7-ZIP
-      <a href="https://www.mediafire.com/file/5hlhd9iwqlzp6et/worldbox.7z/file" target="_blank"
-     style="color:#00ff00; text-decoration:none;">
-     Descargar (MediaFire)
-     </a>
+  <div class="juegos-grid">
+
+    <div class="juego-card">
+      <div class="juego-nombre">7-Zip</div>
+      <p style="font-size:12px; color:var(--text-dim); line-height:1.5;">
+        Necesario para abrir archivos .7z de los juegos.
+      </p>
+      <a href="https://www.7-zip.org/download.html"
+         target="_blank" class="btn-descarga">⬇ Descargar (Oficial)</a>
+    </div>
+
+  </div>
 </div>
 
-<footer>
-  © 2026 GABOXZTV
-</footer>
+<!-- ENLACES -->
+<div id="enlaces" class="seccion">
+  <h2>Mis enlaces</h2>
+  <div class="enlaces-grid">
+
+    <a href="https://m.youtube.com/@OptiProjects" target="_blank" class="enlace-card">
+      <span class="enlace-icono">🎮</span>
+      <span class="enlace-nombre">OptiProjects</span>
+      <span class="enlace-desc">Canal de YouTube</span>
+    </a>
+
+    <a href="https://optijuegos.net/" target="_blank" class="enlace-card">
+      <span class="enlace-icono">🔗</span>
+      <span class="enlace-nombre">OptiJuegos</span>
+      <span class="enlace-desc">Sitio web</span>
+    </a>
+
+    <a href="https://kick.com/xzgabotv" target="_blank" class="enlace-card">
+      <span class="enlace-icono">🟣</span>
+      <span class="enlace-nombre">Kick</span>
+      <span class="enlace-desc">xzgabotv</span>
+    </a>
+
+    <a href="https://www.youtube.com/@zgaboxz" target="_blank" class="enlace-card">
+      <span class="enlace-icono">▶</span>
+      <span class="enlace-nombre">YouTube</span>
+      <span class="enlace-desc">Mi canal</span>
+    </a>
+
+    <a href="https://docs.google.com/document/d/e/2PACX-1vQDQUYi7IMbrhOmVjssl-Dz6E5SPF457ar8yMFhFeWMKnw90YPKKCZI-A8uz9sneIzn_qE1-Q8Uf1sx/pub"
+       target="_blank" class="enlace-card">
+      <span class="enlace-icono">📄</span>
+      <span class="enlace-nombre">Sobre mí</span>
+      <span class="enlace-desc">Leer más</span>
+    </a>
+
+  </div>
+</div>
+
+<footer>© 2026 GABOXZTV</footer>
+
+<img src="img/mi skin.png" alt="GaboxzTV" class="skin-fixed">
 
 <script>
-function mostrarSeccion(id) {
-  const secciones = document.querySelectorAll('.seccion');
-  secciones.forEach(s => s.style.display = 'none');
+function toggle(id, btn) {
+  const sec = document.getElementById(id);
+  const isOpen = sec.classList.contains('visible');
 
-  const activa = document.getElementById(id);
-  if (activa) {
-    activa.style.display = 'block';
+  document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+
+  if (!isOpen) {
+    sec.classList.add('visible');
+    btn.classList.add('active');
   }
 }
 </script>
 
-  <img src="img/mi skin.png" alt="GaboxzTV"
-style="
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  width: 80px;
-  opacity: 0.6;
-  z-index: 999;
-">
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
