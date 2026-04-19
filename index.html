@@ -27,7 +27,6 @@
       flex-direction: column;
     }
 
-    /* HEADER */
     header {
       background-color: var(--bg3);
       text-align: center;
@@ -40,13 +39,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(0,255,0,0.03) 3px,
-        rgba(0,255,0,0.03) 4px
-      );
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,0,0.03) 3px, rgba(0,255,0,0.03) 4px);
       pointer-events: none;
     }
     header h1 {
@@ -67,7 +60,6 @@
       position: relative;
     }
 
-    /* NAV BOTONES */
     .nav {
       display: flex;
       justify-content: center;
@@ -100,7 +92,6 @@
       box-shadow: 0 0 16px rgba(0,255,0,0.5);
     }
 
-    /* AVISO */
     .aviso {
       max-width: 700px;
       margin: 20px auto 0;
@@ -114,7 +105,6 @@
       text-align: left;
     }
 
-    /* SECCIONES */
     .seccion {
       display: none;
       padding: 36px 20px;
@@ -137,7 +127,6 @@
       margin-bottom: 28px;
     }
 
-    /* LISTA DE JUEGOS */
     .juegos-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -185,7 +174,6 @@
       padding: 40px 0;
     }
 
-    /* ENLACES */
     .enlaces-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -216,7 +204,6 @@
     .enlace-nombre { font-family: 'Press Start 2P', cursive; font-size: 8px; }
     .enlace-desc { font-size: 11px; color: var(--text-dim); }
 
-    /* FOOTER */
     footer {
       margin-top: auto;
       text-align: center;
@@ -227,7 +214,6 @@
       border-top: 1px solid rgba(0,255,0,0.1);
     }
 
-    /* SKIN FIJA */
     .skin-fixed {
       position: fixed;
       bottom: 15px;
@@ -241,6 +227,7 @@
     @media (max-width: 480px) {
       .skin-fixed { width: 50px; bottom: 10px; right: 10px; }
     }
+
   </style>
 </head>
 <body>
@@ -255,6 +242,7 @@
   <button class="btn" onclick="toggle('menos4gb', this)">Juegos &lt; 4 GB</button>
   <button class="btn" onclick="toggle('programas', this)">Programas</button>
   <button class="btn" onclick="toggle('enlaces', this)">Enlaces</button>
+  <button class="btn" onclick="toggle('faq', this)">❓ FAQ</button>
 </nav>
 
 <div style="max-width:700px; margin: 20px auto; padding: 0 20px;">
@@ -263,91 +251,68 @@
   </div>
 </div>
 
-<!-- MENOS 2 GB -->
 <div id="menos2gb" class="seccion">
   <h2>Juegos &lt; 2 GB</h2>
   <div class="juegos-grid">
-
     <div class="juego-card">
       <div class="juego-nombre">Geometry Dash</div>
-      <a href="https://www.mediafire.com/file/kybq76zj8r8nu5i/GeometryDash_normal_un_poco_optimizado.apk/file"
-         target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
+      <a href="https://www.mediafire.com/file/kybq76zj8r8nu5i/GeometryDash_normal_un_poco_optimizado.apk/file" target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
     </div>
-
     <div class="juego-card">
       <div class="juego-nombre">Terraria</div>
-      <a href="https://www.mediafire.com/file/f2ho9pm4fqwwyyz/terrari+optimizada+v1+GABOXZTV.7z/file"
-         target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
+      <a href="https://www.mediafire.com/file/f2ho9pm4fqwwyyz/terrari+optimizada+v1+GABOXZTV.7z/file" target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
     </div>
-
     <div class="juego-card">
       <div class="juego-nombre">WorldBox</div>
-      <a href="https://www.mediafire.com/file/5hlhd9iwqlzp6et/worldbox.7z/file"
-         target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
+      <a href="https://www.mediafire.com/file/5hlhd9iwqlzp6et/worldbox.7z/file" target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
     </div>
-
   </div>
 </div>
 
-<!-- MENOS 4 GB -->
 <div id="menos4gb" class="seccion">
   <h2>Juegos &lt; 4 GB</h2>
   <div class="proximo">🕹 Próximamente…</div>
 </div>
 
-<!-- PROGRAMAS -->
 <div id="programas" class="seccion">
   <h2>Programas</h2>
   <div class="juegos-grid">
-
     <div class="juego-card">
       <div class="juego-nombre">7-Zip</div>
-      <p style="font-size:12px; color:var(--text-dim); line-height:1.5;">
-        Necesario para abrir archivos .7z de los juegos.
-      </p>
-      <a href="https://www.7-zip.org/download.html"
-         target="_blank" class="btn-descarga">⬇ Descargar (Oficial)</a>
+      <p style="font-size:12px; color:var(--text-dim); line-height:1.5;">Necesario para abrir archivos .7z de los juegos.</p>
+      <a href="https://www.7-zip.org/download.html" target="_blank" class="btn-descarga">⬇ Descargar (Oficial)</a>
     </div>
-
   </div>
 </div>
 
-<!-- ENLACES -->
 <div id="enlaces" class="seccion">
   <h2>Mis enlaces</h2>
   <div class="enlaces-grid">
-
     <a href="https://m.youtube.com/@OptiProjects" target="_blank" class="enlace-card">
       <span class="enlace-icono">🎮</span>
       <span class="enlace-nombre">OptiProjects</span>
       <span class="enlace-desc">Canal de YouTube</span>
     </a>
-
     <a href="https://optijuegos.net/" target="_blank" class="enlace-card">
       <span class="enlace-icono">🔗</span>
       <span class="enlace-nombre">OptiJuegos</span>
       <span class="enlace-desc">Sitio web</span>
     </a>
-
     <a href="https://kick.com/xzgabotv" target="_blank" class="enlace-card">
       <span class="enlace-icono">🟣</span>
       <span class="enlace-nombre">Kick</span>
       <span class="enlace-desc">xzgabotv</span>
     </a>
-
     <a href="https://www.youtube.com/@zgaboxz" target="_blank" class="enlace-card">
       <span class="enlace-icono">▶</span>
       <span class="enlace-nombre">YouTube</span>
       <span class="enlace-desc">Mi canal</span>
     </a>
-
-    <a href="https://docs.google.com/document/d/e/2PACX-1vQDQUYi7IMbrhOmVjssl-Dz6E5SPF457ar8yMFhFeWMKnw90YPKKCZI-A8uz9sneIzn_qE1-Q8Uf1sx/pub"
-       target="_blank" class="enlace-card">
+    <a href="https://docs.google.com/document/d/e/2PACX-1vQDQUYi7IMbrhOmVjssl-Dz6E5SPF457ar8yMFhFeWMKnw90YPKKCZI-A8uz9sneIzn_qE1-Q8Uf1sx/pub" target="_blank" class="enlace-card">
       <span class="enlace-icono">📄</span>
       <span class="enlace-nombre">Sobre mí</span>
       <span class="enlace-desc">Leer más</span>
     </a>
-
   </div>
 </div>
 
@@ -355,33 +320,113 @@
 
 <img src="img/mi skin.png" alt="GaboxzTV" class="skin-fixed">
 
-<script>
-function toggle(id, btn) {
-  const sec = document.getElementById(id);
-  const isOpen = sec.classList.contains('visible');
-
-  document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
-  document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
-
-  if (!isOpen) {
-    sec.classList.add('visible');
-    btn.classList.add('active');
+<!-- FAQ -->
+<style>
+  .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { background: #1a1a1a; border: 1px solid rgba(0,255,0,0.2); border-radius: 6px; overflow: hidden; }
+  .faq-pregunta {
+    width: 100%; text-align: left; background: none; border: none; color: #00ff00;
+    font-family: Arial, sans-serif; font-size: 13px; padding: 14px 18px;
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px;
   }
-}
+  .faq-pregunta:hover { background: rgba(0,255,0,0.05); }
+  .faq-pregunta span { font-size: 16px; transition: transform 0.2s; }
+  .faq-pregunta.open span { transform: rotate(45deg); }
+  .faq-respuesta {
+    display: none; padding: 0 18px 14px; font-size: 13px;
+    color: rgba(255,255,255,0.7); line-height: 1.7; border-top: 1px solid rgba(0,255,0,0.1);
+    padding-top: 12px;
+  }
+  .faq-respuesta.visible { display: block; }
+</style>
+
+<div id="faq" class="seccion">
+  <h2>Preguntas Frecuentes</h2>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-pregunta" onclick="toggleFaq(this)">
+        ¿Los juegos tienen virus? <span>+</span>
+      </button>
+      <div class="faq-respuesta">
+        No tienen virus. El antivirus los detecta por el crack que incluyen, pero son completamente seguros. Puedes añadirlos como excepción en tu antivirus para que no los bloquee.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-pregunta" onclick="toggleFaq(this)">
+        ¿Cómo abro los archivos .7z? <span>+</span>
+      </button>
+      <div class="faq-respuesta">
+        Necesitas el programa 7-Zip. Lo puedes descargar gratis en la sección de Programas de esta web. Una vez instalado, haz clic derecho sobre el archivo .7z y selecciona "Extraer aquí".
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-pregunta" onclick="toggleFaq(this)">
+        ¿Por qué el link de descarga no funciona? <span>+</span>
+      </button>
+      <div class="faq-respuesta">
+        A veces MediaFire tiene caídas temporales. Espera unos minutos e intenta de nuevo. Si el problema persiste, contáctame por mis redes sociales y lo reviso.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-pregunta" onclick="toggleFaq(this)">
+        ¿Los juegos están en español? <span>+</span>
+      </button>
+      <div class="faq-respuesta">
+        Depende del juego. La mayoría sí están disponibles en español dentro de las opciones del juego. Si tienes dudas de uno en específico, pregúntame en mis redes.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-pregunta" onclick="toggleFaq(this)">
+        ¿Puedo jugar online con estas versiones? <span>+</span>
+      </button>
+      <div class="faq-respuesta">
+        La mayoría son versiones de un solo jugador o modo historia. El modo online generalmente no está disponible en estas versiones optimizadas.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-pregunta" onclick="toggleFaq(this)">
+        ¿Cada cuánto suben juegos nuevos? <span>+</span>
+      </button>
+      <div class="faq-respuesta">
+        Subo juegos nuevos regularmente. Sígueme en YouTube o Kick para enterarte cuando haya novedades.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-pregunta" onclick="toggleFaq(this)">
+        ¿Funcionan en PC de bajos recursos? <span>+</span>
+      </button>
+      <div class="faq-respuesta">
+        Sí, todos los juegos que subo están optimizados para correr bien en PCs con pocos recursos. Si tienes problemas de rendimiento, baja la calidad gráfica dentro del juego.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function toggle(id, btn) {
+    const sec = document.getElementById(id);
+    const isOpen = sec.classList.contains('visible');
+    document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+    if (!isOpen) { sec.classList.add('visible'); btn.classList.add('active'); }
+  }
+
+  function toggleFaq(btn) {
+    const respuesta = btn.nextElementSibling;
+    const isOpen = respuesta.classList.contains('visible');
+    document.querySelectorAll('.faq-respuesta').forEach(r => r.classList.remove('visible'));
+    document.querySelectorAll('.faq-pregunta').forEach(b => b.classList.remove('open'));
+    if (!isOpen) { respuesta.classList.add('visible'); btn.classList.add('open'); }
+  }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
