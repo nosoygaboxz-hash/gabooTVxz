@@ -5,280 +5,149 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shorts Academy — Crece y Gana</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0f; --surface: #13131a; --card: #1a1a24;
+  --border: rgba(255,255,255,0.08); --text: #f0f0f5; --muted: #8888a0;
+  --grad1: linear-gradient(135deg,#7c5cfc,#fc5c7d);
+  --grad2: linear-gradient(135deg,#43e97b,#38f9d7);
+  --grad3: linear-gradient(135deg,#f7971e,#ffd200);
+  --grad4: linear-gradient(135deg,#fc5c7d,#ff6b35);
+  --grad5: linear-gradient(135deg,#4facfe,#00f2fe);
+  --grad6: linear-gradient(135deg,#a18cd1,#fbc2eb);
+}
+body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
 
-  :root {
-    --bg: #0a0a0f;
-    --surface: #13131a;
-    --card: #1a1a24;
-    --border: rgba(255,255,255,0.08);
-    --text: #f0f0f5;
-    --muted: #8888a0;
-    --accent1: #7c5cfc;
-    --accent2: #fc5c7d;
-    --accent3: #43e97b;
-    --grad1: linear-gradient(135deg, #7c5cfc, #fc5c7d);
-    --grad2: linear-gradient(135deg, #43e97b, #38f9d7);
-    --grad3: linear-gradient(135deg, #f7971e, #ffd200);
-    --grad4: linear-gradient(135deg, #fc5c7d, #ff6b35);
-    --grad5: linear-gradient(135deg, #4facfe, #00f2fe);
-    --grad6: linear-gradient(135deg, #a18cd1, #fbc2eb);
-  }
+nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:16px 40px; background:rgba(10,10,15,0.85); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.logo { font-size:20px; font-weight:700; background:var(--grad1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.nav-badge { font-size:12px; padding:5px 14px; border-radius:20px; background:rgba(124,92,252,0.15); border:1px solid rgba(124,92,252,0.3); color:#a98bff; font-weight:500; }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+.hero { padding:160px 40px 100px; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; background:radial-gradient(ellipse,rgba(124,92,252,0.15) 0%,transparent 70%); pointer-events:none; }
+.hero-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); margin-bottom:28px; background:var(--card); padding:6px 16px; border-radius:20px; border:1px solid var(--border); }
+.hero-eyebrow span { color:#43e97b; font-weight:600; }
+.hero h1 { font-size:clamp(42px,7vw,80px); font-weight:800; line-height:1.05; letter-spacing:-2px; margin-bottom:24px; }
+.hero h1 em { font-style:normal; background:var(--grad1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero p { font-size:18px; color:var(--muted); max-width:560px; margin:0 auto 48px; line-height:1.7; }
+.hero-stats { display:flex; justify-content:center; gap:48px; flex-wrap:wrap; }
+.stat { text-align:center; }
+.stat-num { font-size:32px; font-weight:700; background:var(--grad2); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.stat-label { font-size:13px; color:var(--muted); margin-top:4px; }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 16px 40px;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .logo {
-    font-size: 20px; font-weight: 700;
-    background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .nav-badge {
-    font-size: 12px; padding: 5px 14px;
-    border-radius: 20px;
-    background: rgba(124,92,252,0.15);
-    border: 1px solid rgba(124,92,252,0.3);
-    color: #a98bff;
-    font-weight: 500;
-  }
+.section { padding:80px 40px; max-width:1100px; margin:0 auto; }
+.section-title { font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--muted); margin-bottom:48px; display:flex; align-items:center; gap:10px; }
+.section-title::after { content:''; flex:1; height:1px; background:var(--border); }
 
-  /* HERO */
-  .hero {
-    padding: 160px 40px 100px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
-    width: 800px; height: 800px;
-    background: radial-gradient(ellipse, rgba(124,92,252,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 13px; color: var(--muted); margin-bottom: 28px;
-    background: var(--card); padding: 6px 16px; border-radius: 20px;
-    border: 1px solid var(--border);
-  }
-  .hero-eyebrow span { color: var(--accent3); font-weight: 600; }
-  .hero h1 {
-    font-size: clamp(42px, 7vw, 80px);
-    font-weight: 800; line-height: 1.05;
-    letter-spacing: -2px; margin-bottom: 24px;
-  }
-  .hero h1 em { font-style: normal; background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .hero p {
-    font-size: 18px; color: var(--muted); max-width: 560px; margin: 0 auto 48px;
-    line-height: 1.7;
-  }
-  .hero-stats {
-    display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
-  }
-  .stat { text-align: center; }
-  .stat-num {
-    font-size: 32px; font-weight: 700;
-    background: var(--grad2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+/* ===== YT EXPLAINER ===== */
+.yt-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-bottom:40px; }
+.yt-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:24px; position:relative; overflow:hidden; }
+.yt-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+.yt-c1::before { background:var(--grad1); } .yt-c2::before { background:var(--grad2); } .yt-c3::before { background:var(--grad3); } .yt-c4::before { background:var(--grad4); } .yt-c5::before { background:var(--grad5); }
+.yt-icon { font-size:28px; margin-bottom:12px; display:block; }
+.yt-card h3 { font-size:15px; font-weight:700; margin-bottom:8px; }
+.yt-card p { font-size:13px; color:var(--muted); line-height:1.65; }
+.yt-card .highlight { color:var(--text); font-weight:600; }
 
-  /* DOCS GRID */
-  .section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
-  .section-title {
-    font-size: 13px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 2px; color: var(--muted); margin-bottom: 48px;
-  }
-  .docs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
+.rpm-table { background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:24px; }
+.rpm-table-header { padding:20px 24px 12px; border-bottom:1px solid var(--border); }
+.rpm-table-header h3 { font-size:16px; font-weight:700; }
+.rpm-table-header p { font-size:13px; color:var(--muted); margin-top:4px; }
+.rpm-row { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; padding:14px 24px; border-bottom:1px solid var(--border); align-items:center; gap:8px; }
+.rpm-row:last-child { border-bottom:none; }
+.rpm-row.head { background:rgba(255,255,255,0.03); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+.rpm-row .lang { font-size:14px; font-weight:600; }
+.rpm-row .rpm-val { font-size:14px; font-weight:700; }
+.rpm-row .rpm-mil { font-size:13px; color:var(--muted); }
+.rpm-row .rpm-tip { font-size:12px; color:var(--muted); }
+.pill { display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; }
+.pill-green { background:rgba(67,233,123,0.15); color:#43e97b; }
+.pill-yellow { background:rgba(247,151,30,0.15); color:#f7971e; }
+.pill-red { background:rgba(252,92,125,0.15); color:#fc5c7d; }
+.pill-blue { background:rgba(79,172,254,0.15); color:#4facfe; }
 
-  /* DOC CARD */
-  .doc-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .doc-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .doc-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); }
-  .doc-card:hover::before { opacity: 1; }
+.req-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:24px; margin-bottom:16px; }
+.req-box h3 { font-size:15px; font-weight:700; margin-bottom:16px; }
+.req-row { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+.req-icon { font-size:20px; width:36px; text-align:center; flex-shrink:0; }
+.req-text { font-size:14px; color:var(--muted); line-height:1.5; }
+.req-text strong { color:var(--text); }
 
-  .card-g1::before { background: var(--grad1); }
-  .card-g2::before { background: var(--grad2); }
-  .card-g3::before { background: var(--grad3); }
-  .card-g4::before { background: var(--grad4); }
-  .card-g5::before { background: var(--grad5); }
-  .card-g6::before { background: var(--grad6); }
+.tip-box { background:linear-gradient(135deg,rgba(124,92,252,0.08),rgba(252,92,125,0.05)); border:1px solid rgba(124,92,252,0.2); border-radius:14px; padding:20px 24px; margin-top:24px; }
+.tip-box p { font-size:14px; color:#c8c8d8; line-height:1.7; }
+.tip-box strong { color:#a98bff; }
 
-  .card-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; margin-bottom: 20px;
-  }
-  .icon-g1 { background: rgba(124,92,252,0.15); }
-  .icon-g2 { background: rgba(67,233,123,0.15); }
-  .icon-g3 { background: rgba(255,210,0,0.15); }
-  .icon-g4 { background: rgba(252,92,125,0.15); }
-  .icon-g5 { background: rgba(79,172,254,0.15); }
-  .icon-g6 { background: rgba(161,140,209,0.15); }
+/* ===== DOCS ===== */
+.docs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+.doc-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px; cursor:pointer; transition:transform 0.2s,border-color 0.2s; position:relative; overflow:hidden; }
+.doc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; opacity:0; transition:opacity 0.3s; }
+.doc-card:hover { transform:translateY(-4px); border-color:rgba(255,255,255,0.15); }
+.doc-card:hover::before { opacity:1; }
+.card-g1::before { background:var(--grad1); } .card-g2::before { background:var(--grad2); }
+.card-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:20px; }
+.icon-g1 { background:rgba(124,92,252,0.15); } .icon-g2 { background:rgba(67,233,123,0.15); }
+.card-lang { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin-bottom:8px; }
+.doc-card h3 { font-size:17px; font-weight:600; margin-bottom:10px; line-height:1.3; }
+.doc-card p { font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:20px; }
+.card-footer { display:flex; align-items:center; justify-content:space-between; }
+.card-tag { font-size:11px; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,0.06); color:var(--muted); border:1px solid var(--border); }
+.card-arrow { font-size:18px; color:var(--muted); transition:transform 0.2s; }
+.doc-card:hover .card-arrow { transform:translateX(4px); }
 
-  .card-lang {
-    font-size: 10px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 1.5px; color: var(--muted); margin-bottom: 8px;
-  }
-  .doc-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; }
-  .doc-card p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
-  .card-footer {
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .card-tag {
-    font-size: 11px; padding: 3px 10px; border-radius: 20px;
-    background: rgba(255,255,255,0.06); color: var(--muted);
-    border: 1px solid var(--border);
-  }
-  .card-arrow { font-size: 18px; color: var(--muted); transition: transform 0.2s; }
-  .doc-card:hover .card-arrow { transform: translateX(4px); }
+/* ===== RESOURCES ===== */
+.resource-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+.resource-card { border-radius:16px; padding:28px; border:1px solid var(--border); text-decoration:none; display:block; transition:transform 0.2s,border-color 0.2s; position:relative; overflow:hidden; }
+.resource-card:hover { transform:translateY(-4px); border-color:rgba(255,255,255,0.2); }
+.resource-card.drive { background:linear-gradient(135deg,rgba(67,233,123,0.08),rgba(56,249,215,0.05)); }
+.resource-card.apk { background:linear-gradient(135deg,rgba(249,83,198,0.08),rgba(185,29,115,0.05)); }
+.resource-card.soon { background:linear-gradient(135deg,rgba(79,172,254,0.06),rgba(0,242,254,0.03)); cursor:default; }
+.res-icon { font-size:36px; margin-bottom:16px; display:block; }
+.res-badge { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:3px 10px; border-radius:20px; margin-bottom:12px; }
+.badge-drive { background:rgba(67,233,123,0.15); color:#43e97b; }
+.badge-apk { background:rgba(249,83,198,0.15); color:#f953c6; }
+.badge-soon { background:rgba(79,172,254,0.15); color:#4facfe; }
+.resource-card h3 { font-size:18px; font-weight:700; margin-bottom:8px; color:var(--text); }
+.resource-card p { font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:20px; }
+.res-btn { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; padding:10px 20px; border-radius:10px; }
+.res-btn.green { background:rgba(67,233,123,0.15); color:#43e97b; }
+.res-btn.pink { background:rgba(249,83,198,0.15); color:#f953c6; }
+.res-btn.blue { background:rgba(79,172,254,0.12); color:#4facfe; opacity:0.6; }
 
-  /* MODAL */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0; z-index: 200;
-    background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
-    align-items: center; justify-content: center; padding: 20px;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    width: 100%; max-width: 700px;
-    max-height: 85vh;
-    display: flex; flex-direction: column;
-    overflow: hidden;
-  }
-  .modal-header {
-    padding: 28px 32px 20px;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: flex-start; justify-content: space-between;
-    gap: 16px;
-  }
-  .modal-icon-title { display: flex; align-items: center; gap: 16px; }
-  .modal-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
-  .modal-title-group h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-  .modal-title-group span { font-size: 13px; color: var(--muted); }
-  .modal-close {
-    background: none; border: none; cursor: pointer;
-    color: var(--muted); font-size: 24px; padding: 4px;
-    border-radius: 8px; flex-shrink: 0;
-    transition: background 0.15s, color 0.15s;
-  }
-  .modal-close:hover { background: rgba(255,255,255,0.08); color: var(--text); }
-  .modal-body {
-    padding: 32px;
-    overflow-y: auto;
-    flex: 1;
-  }
-  .modal-placeholder {
-    background: rgba(255,255,255,0.03);
-    border: 1px dashed rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 48px 32px;
-    text-align: center;
-  }
-  .modal-placeholder h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-  .modal-placeholder p { font-size: 14px; color: var(--muted); line-height: 1.7; }
-  .edit-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    margin-top: 20px;
-    background: rgba(124,92,252,0.15);
-    border: 1px solid rgba(124,92,252,0.3);
-    color: #a98bff;
-    padding: 10px 20px; border-radius: 10px;
-    font-size: 14px; font-weight: 500;
-    cursor: pointer; transition: background 0.2s;
-  }
-  .edit-btn:hover { background: rgba(124,92,252,0.25); }
+/* ===== MODAL ===== */
+.modal-overlay { display:none; position:fixed; inset:0; z-index:200; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:20px; }
+.modal-overlay.open { display:flex; }
+.modal { background:var(--surface); border:1px solid var(--border); border-radius:20px; width:100%; max-width:750px; max-height:88vh; display:flex; flex-direction:column; overflow:hidden; }
+.modal-header { padding:28px 32px 20px; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+.modal-icon-title { display:flex; align-items:center; gap:16px; }
+.modal-icon { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+.modal-title-group h2 { font-size:20px; font-weight:700; margin-bottom:4px; }
+.modal-title-group span { font-size:13px; color:var(--muted); }
+.modal-close { background:none; border:none; cursor:pointer; color:var(--muted); font-size:24px; padding:4px; border-radius:8px; flex-shrink:0; transition:background 0.15s,color 0.15s; }
+.modal-close:hover { background:rgba(255,255,255,0.08); color:var(--text); }
+.modal-body { padding:32px; overflow-y:auto; flex:1; }
+.content-display { font-size:15px; line-height:1.85; color:#c8c8d8; }
+.content-display h2 { font-size:18px; font-weight:700; color:var(--text); margin:28px 0 12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+.content-display h3 { font-size:15px; font-weight:600; color:#a98bff; margin:18px 0 8px; }
+.content-display p { margin-bottom:12px; }
+.content-display ul { padding-left:20px; margin-bottom:14px; }
+.content-display li { margin-bottom:6px; }
+.content-display .tag { display:inline-block; background:rgba(124,92,252,0.12); color:#a98bff; font-size:12px; padding:3px 10px; border-radius:20px; margin:2px; }
+.content-display .example-block { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-left:3px solid #7c5cfc; border-radius:8px; padding:16px 20px; margin:14px 0; font-size:14px; }
+.content-display .step { display:flex; gap:14px; margin-bottom:14px; align-items:flex-start; }
+.content-display .step-num { background:var(--grad1); color:white; font-size:12px; font-weight:700; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
 
-  /* EDIT MODE */
-  .content-area {
-    display: none;
-    width: 100%;
-    min-height: 300px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(124,92,252,0.3);
-    border-radius: 12px;
-    padding: 20px;
-    color: var(--text);
-    font-size: 15px; line-height: 1.8;
-    resize: vertical;
-    font-family: inherit;
-  }
-  .content-area.visible { display: block; }
-  .content-display {
-    font-size: 15px; line-height: 1.8; color: var(--text);
-  }
-  .content-display h3 { font-size: 17px; font-weight: 600; margin: 20px 0 10px; }
-  .content-display p { margin-bottom: 12px; color: #c0c0d0; }
-  .content-display ul { padding-left: 20px; margin-bottom: 12px; }
-  .content-display li { margin-bottom: 6px; color: #c0c0d0; }
-  .modal-actions {
-    display: flex; gap: 10px; padding: 20px 32px;
-    border-top: 1px solid var(--border);
-  }
-  .btn-save {
-    background: var(--grad1); border: none; color: white;
-    padding: 10px 24px; border-radius: 10px;
-    font-size: 14px; font-weight: 600; cursor: pointer;
-    display: none;
-  }
-  .btn-save.visible { display: block; }
-  .btn-cancel {
-    background: none; border: 1px solid var(--border); color: var(--muted);
-    padding: 10px 20px; border-radius: 10px;
-    font-size: 14px; cursor: pointer; display: none;
-  }
-  .btn-cancel.visible { display: block; }
+footer { text-align:center; padding:60px 40px; border-top:1px solid var(--border); color:var(--muted); font-size:14px; }
+footer a { color:#7c5cfc; text-decoration:none; }
 
-  /* FOOTER */
-  footer {
-    text-align: center; padding: 60px 40px;
-    border-top: 1px solid var(--border);
-    color: var(--muted); font-size: 14px;
-  }
-  footer a { color: var(--accent1); text-decoration: none; }
-
-  @media (max-width: 600px) {
-    nav { padding: 14px 20px; }
-    .hero { padding: 120px 20px 70px; }
-    .section { padding: 60px 20px; }
-    .hero-stats { gap: 28px; }
-    .modal-header { padding: 20px; }
-    .modal-body { padding: 20px; }
-    .modal-actions { padding: 16px 20px; }
-  }
+@media(max-width:600px){
+  nav { padding:14px 20px; }
+  .hero { padding:120px 20px 70px; }
+  .section { padding:60px 20px; }
+  .hero-stats { gap:28px; }
+  .rpm-row { grid-template-columns:1fr 1fr; }
+  .rpm-row .rpm-tip { display:none; }
+  .modal-header { padding:20px; }
+  .modal-body { padding:20px; }
+}
 </style>
 </head>
 <body>
@@ -289,32 +158,252 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-eyebrow">📱 <span>Guías exclusivas</span> para dominar YouTube Shorts</div>
+  <div class="hero-eyebrow">🔥 <span>Todo lo que necesitas</span> para dominar YouTube Shorts</div>
   <h1>Crece rápido.<br><em>Gana en serio.</em></h1>
-  <p>Todo lo que necesitas saber para construir un canal de Shorts desde cero, conseguir millones de vistas y monetizarlo al máximo.</p>
+  <p>Prompts, guiones, herramientas y recursos para construir tu canal desde cero y monetizarlo al máximo.</p>
   <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">6+</div>
-      <div class="stat-label">Guías completas · Complete guides</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">ES/EN</div>
-      <div class="stat-label">Bilingüe · Bilingual</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Editable · Ready to edit</div>
-    </div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Docs completos</div></div>
+    <div class="stat"><div class="stat-num">ES/EN</div><div class="stat-label">Bilingüe</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Recursos gratis</div></div>
   </div>
 </section>
 
+<!-- ===== CÓMO FUNCIONA YOUTUBE ===== -->
 <div class="section">
-  <div class="section-title">📚 Documentación · Documentation</div>
-  <div class="docs-grid" id="docsGrid"></div>
+  <div class="section-title">📺 Cómo funciona YouTube y cuánto se gana</div>
+
+  <div class="yt-grid">
+    <div class="yt-card yt-c1">
+      <span class="yt-icon">🔄</span>
+      <h3>¿Qué es el RPM?</h3>
+      <p>RPM (Revenue Per Mille) es lo que <span class="highlight">tú recibes por cada 1,000 vistas</span> después de que YouTube se queda su parte. Es diferente al CPM, que es lo que pagan los anunciantes antes del corte de YouTube.</p>
+    </div>
+    <div class="yt-card yt-c2">
+      <span class="yt-icon">✂️</span>
+      <h3>¿Cuánto se queda YouTube?</h3>
+      <p>YouTube se queda el <span class="highlight">45%</span> de todos los ingresos por anuncios. Tú recibes el <span class="highlight">55%</span> en videos largos. En Shorts el modelo es distinto: el dinero va a un fondo común y se reparte según tus vistas.</p>
+    </div>
+    <div class="yt-card yt-c3">
+      <span class="yt-icon">🎵</span>
+      <h3>La música te roba dinero</h3>
+      <p>Si usas música con copyright en tus Shorts, <span class="highlight">hasta el 50% de tus ganancias</span> se va a los dueños de esa canción. Sin música o con música libre, te quedas todo.</p>
+    </div>
+    <div class="yt-card yt-c4">
+      <span class="yt-icon">🌍</span>
+      <h3>El país de tu audiencia importa</h3>
+      <p>No es lo mismo tener vistas de EE.UU. que de México. Los anunciantes pagan <span class="highlight">10x más</span> por audiencias en inglés. Tu RPM cambia drásticamente según de dónde venga tu público.</p>
+    </div>
+    <div class="yt-card yt-c5">
+      <span class="yt-icon">📊</span>
+      <h3>Shorts vs Videos Largos</h3>
+      <p>Los Shorts pagan <span class="highlight">mucho menos por vista</span>, pero pueden conseguir millones de vistas rápido. Lo inteligente es usar Shorts para ganar suscriptores y videos largos para ganar dinero de verdad.</p>
+    </div>
+  </div>
+
+  <!-- TABLA RPM -->
+  <div class="rpm-table">
+    <div class="rpm-table-header">
+      <h3>💰 ¿Cuánto ganas por 1,000 vistas? — RPM por idioma</h3>
+      <p>Datos reales de 2025–2026. El RPM varía según nicho, país y si usas música o no.</p>
+    </div>
+    <div class="rpm-row head">
+      <div>Idioma / Región</div>
+      <div>RPM Shorts</div>
+      <div>Por 1M de vistas</div>
+      <div>Nivel</div>
+    </div>
+    <div class="rpm-row">
+      <div class="lang">🇺🇸 Inglés (EE.UU.)</div>
+      <div class="rpm-val">$0.05 – $0.13</div>
+      <div class="rpm-mil">$50 – $130</div>
+      <div><span class="pill pill-green">TOP</span></div>
+    </div>
+    <div class="rpm-row">
+      <div class="lang">🇬🇧 Inglés (UK/AU)</div>
+      <div class="rpm-val">$0.04 – $0.10</div>
+      <div class="rpm-mil">$40 – $100</div>
+      <div><span class="pill pill-green">ALTO</span></div>
+    </div>
+    <div class="rpm-row">
+      <div class="lang">🇩🇪 Alemán</div>
+      <div class="rpm-val">$0.03 – $0.08</div>
+      <div class="rpm-mil">$30 – $80</div>
+      <div><span class="pill pill-yellow">MEDIO</span></div>
+    </div>
+    <div class="rpm-row">
+      <div class="lang">🇪🇸 Español (España)</div>
+      <div class="rpm-val">$0.02 – $0.05</div>
+      <div class="rpm-mil">$20 – $50</div>
+      <div><span class="pill pill-yellow">MEDIO</span></div>
+    </div>
+    <div class="rpm-row">
+      <div class="lang">🇲🇽 Español (LATAM)</div>
+      <div class="rpm-val">$0.01 – $0.03</div>
+      <div class="rpm-mil">$10 – $30</div>
+      <div><span class="pill pill-red">BAJO</span></div>
+    </div>
+    <div class="rpm-row">
+      <div class="lang">🌐 Promedio mundial</div>
+      <div class="rpm-val">$0.03 – $0.05</div>
+      <div class="rpm-mil">$25 – $50</div>
+      <div><span class="pill pill-blue">MIX</span></div>
+    </div>
+  </div>
+
+  <!-- CUÁNTO GANAS SEGÚN VISTAS -->
+  <div class="rpm-table">
+    <div class="rpm-table-header">
+      <h3>📈 ¿Cuánto ganas según tus vistas totales?</h3>
+      <p>Calculado con RPM promedio de $0.04 (audiencia mixta, sin música con copyright)</p>
+    </div>
+    <div class="rpm-row head">
+      <div>Vistas al mes</div>
+      <div>Inglés (EE.UU.)</div>
+      <div>Español (LATAM)</div>
+      <div>Mixto</div>
+    </div>
+    <div class="rpm-row">
+      <div class="lang">100,000</div>
+      <div class="rpm-val" style="color:#43e97b">$5 – $13</div>
+      <div class="rpm-val" style="color:#fc5c7d">$1 – $3</div>
+      <div class="rpm-val">$3 – $5</div>
+    </div>
+    <div class="rpm-row">
+      <div class="lang">1,000,000</div>
+      <div class="rpm-val" style="color:#43e97b">$50 – $130</div>
+      <div class="rpm-val" style="color:#fc5c7d">$10 – $30</div>
+      <div class="rpm-val">$25 – $50</div>
+    </div>
+    <div class="rpm-row">
+      <div class="lang">10,000,000</div>
+      <div class="rpm-val" style="color:#43e97b">$500 – $1,300</div>
+      <div class="rpm-val" style="color:#fc5c7d">$100 – $300</div>
+      <div class="rpm-val">$250 – $500</div>
+    </div>
+    <div class="rpm-row">
+      <div class="lang">100,000,000</div>
+      <div class="rpm-val" style="color:#43e97b">$5,000 – $13,000</div>
+      <div class="rpm-val" style="color:#fc5c7d">$1,000 – $3,000</div>
+      <div class="rpm-val">$2,500 – $5,000</div>
+    </div>
+  </div>
+
+  <!-- REQUISITOS -->
+  <div class="req-box">
+    <h3>✅ Requisitos para monetizar con Shorts (YouTube Partner Program)</h3>
+    <div class="req-row"><div class="req-icon">👥</div><div class="req-text"><strong>500 suscriptores</strong> — Para nivel básico (sin ingresos por ads)</div></div>
+    <div class="req-row"><div class="req-icon">🎬</div><div class="req-text"><strong>3 videos públicos</strong> en los últimos 90 días — Para el nivel básico</div></div>
+    <div class="req-row"><div class="req-icon">👁️</div><div class="req-text"><strong>3,000 horas de watch time</strong> en videos largos O <strong>3 millones de vistas en Shorts</strong> en 90 días — Para activar anuncios</div></div>
+    <div class="req-row"><div class="req-icon">👥</div><div class="req-text"><strong>1,000 suscriptores</strong> para el nivel completo con ingresos por anuncios en Shorts</div></div>
+    <div class="req-row"><div class="req-icon">📋</div><div class="req-text">Cumplir las <strong>políticas de monetización</strong> de YouTube (sin contenido copiado, sin música robada, sin spam)</div></div>
+  </div>
+
+  <div class="tip-box">
+    <p>💡 <strong>La verdad que nadie te dice:</strong> Los Shorts solos no te harán rico con anuncios. Su poder real está en conseguirte <strong>suscriptores rápido</strong> que luego ven tus videos largos, donde el RPM puede ser <strong>10 a 100 veces más alto</strong> ($3–$15 por cada 1,000 vistas). La estrategia ganadora es: <strong>Shorts para crecer → Videos largos para ganar dinero de verdad.</strong> En paralelo, los patrocinios en Shorts pueden pagarte $200–$2,000 por video si tienes una audiencia engaged, sin importar cuánto pague YouTube.</p>
+  </div>
+
+  <!-- EMPIEZA HOY -->
+  <div style="background:linear-gradient(135deg,rgba(124,92,252,0.12),rgba(252,92,125,0.08));border:1px solid rgba(124,92,252,0.25);border-radius:16px;padding:36px;margin-top:24px;text-align:center;">
+    <div style="font-size:40px;margin-bottom:16px;">🚀</div>
+    <h2 style="font-size:24px;font-weight:800;margin-bottom:12px;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Empieza hoy. No pierdes nada.</h2>
+    <p style="font-size:16px;color:#c0c0d0;max-width:600px;margin:0 auto 20px;line-height:1.7;">Cada día que no publicas es un día que alguien más te está quitando tu audiencia. No necesitas equipo caro, no necesitas experiencia. Solo necesitas empezar. <strong style="color:var(--text);">El primer Short que subas hoy puede ser el que cambie todo.</strong> Miles de creadores empezaron desde cero exactamente donde estás tú ahora.</p>
+    <div style="display:inline-flex;align-items:center;gap:10px;background:var(--grad1);padding:14px 32px;border-radius:12px;font-size:15px;font-weight:700;color:white;">⚡ El momento perfecto es ahora</div>
+  </div>
+
+  <!-- GANA MÁS EN VARIOS IDIOMAS -->
+  <div style="margin-top:24px;">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+      <div style="padding:24px 28px;border-bottom:1px solid var(--border);">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;">🌍 ¿Quieres ganar MUCHO más? Publica en varios idiomas</h3>
+        <p style="font-size:14px;color:var(--muted);line-height:1.6;">Esta es la estrategia que usan los creadores que ganan 5–10x más que el promedio. El mismo contenido, más idiomas, más dinero.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0;">
+        <div style="padding:20px 24px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);">
+          <div style="font-size:24px;margin-bottom:8px;">🇺🇸</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">Inglés — La mina de oro</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">RPM hasta <strong style="color:#43e97b;">5x más alto</strong> que español. Si haces el mismo video en inglés, ganas 5 veces más por las mismas vistas. Es el idioma que más pagan los anunciantes del mundo.</div>
+        </div>
+        <div style="padding:20px 24px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);">
+          <div style="font-size:24px;margin-bottom:8px;">🇩🇪</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">Alemán — El secreto</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Poca competencia, RPM muy alto. Alemania, Austria y Suiza pagan casi tanto como EE.UU. y hay <strong style="color:#f7971e;">mucho menos creadores</strong>. Fácil destacar.</div>
+        </div>
+        <div style="padding:20px 24px;border-bottom:1px solid var(--border);">
+          <div style="font-size:24px;margin-bottom:8px;">🇧🇷</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">Portugués — Volumen brutal</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Brasil tiene <strong style="color:#4facfe;">200+ millones</strong> de personas y consume muchísimo contenido. RPM similar al español LATAM pero con audiencias enormes que se vuelven virales rápido.</div>
+        </div>
+        <div style="padding:20px 24px;border-right:1px solid var(--border);">
+          <div style="font-size:24px;margin-bottom:8px;">🤖</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">Cómo hacerlo sin hablar el idioma</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Usa <strong style="color:#a98bff;">CapCut + traducción automática</strong> para subtítulos. O usa herramientas de doblaje con IA como ElevenLabs. Mismo video, mismo esfuerzo, multiplicado por el número de idiomas.</div>
+        </div>
+        <div style="padding:20px 24px;border-right:1px solid var(--border);">
+          <div style="font-size:24px;margin-bottom:8px;">📊</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">El efecto multiplicador</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Si ganas $30 al mes en español con 1M de vistas, el <strong style="color:#43e97b;">mismo video en inglés</strong> te daría $100–$130. En 3 idiomas: $200+ con el mismo contenido.</div>
+        </div>
+        <div style="padding:20px 24px;">
+          <div style="font-size:24px;margin-bottom:8px;">🎯</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">La estrategia recomendada</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Empieza en español para <strong style="color:#fc5c7d;">practicar y crecer</strong>. Cuando tengas 10–20 videos, lanza el mismo canal en inglés. Después agrega un tercer idioma. Tres canales = tres fuentes de ingreso.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DOCS ===== -->
+<div class="section" style="padding-top:0;">
+  <div class="section-title">📚 Documentación</div>
+  <div class="docs-grid">
+    <div class="doc-card card-g1" onclick="openDoc('brainrot')">
+      <div class="card-icon icon-g1">🧠</div>
+      <div class="card-lang">ES · EN</div>
+      <h3>Brain Rot Shorts con Roblox</h3>
+      <p>Prompts para generar ideas virales y scripts de Shorts estilo Gen-Z con gameplay de Roblox como fondo.</p>
+      <div class="card-footer"><span class="card-tag">Scripts · Ideas</span><span class="card-arrow">→</span></div>
+    </div>
+    <div class="doc-card card-g2" onclick="openDoc('canal')">
+      <div class="card-icon icon-g2">🎬</div>
+      <div class="card-lang">ES</div>
+      <h3>Kit Completo para tu Canal</h3>
+      <p>Nombre, logo, descripción SEO, guiones documentales, miniaturas y etiquetas. Todo para lanzar tu canal.</p>
+      <div class="card-footer"><span class="card-tag">Branding · SEO</span><span class="card-arrow">→</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RECURSOS ===== -->
+<div class="section" style="padding-top:0;">
+  <div class="section-title">🎁 Recursos Gratuitos</div>
+  <div class="resource-grid">
+    <a class="resource-card drive" href="https://drive.google.com/drive/folders/1i6d-pY2u5O5o_1TFuUdFyg0YRZCxbqYn?usp=sharing" target="_blank">
+      <span class="res-icon">📁</span>
+      <span class="res-badge badge-drive">Google Drive</span>
+      <h3>Pack de Edición de Video</h3>
+      <p>Recursos, plantillas y materiales para editar tus Shorts de forma profesional. Acceso directo a la carpeta.</p>
+      <div class="res-btn green">Abrir Drive →</div>
+    </a>
+    <a class="resource-card apk" href="https://www.mediafire.com/file/jwi0n4my5kab9cr" target="_blank">
+      <span class="res-icon">💻</span>
+      <span class="res-badge badge-apk">PC · Windows</span>
+      <h3>CapCut Pro para PC</h3>
+      <p>Versión de CapCut optimizada para editar tus Shorts directamente desde tu computadora. Más potencia, más control, misma facilidad.</p>
+      <div class="res-btn pink">Descargar para PC →</div>
+    </a>
+    <div class="resource-card soon">
+      <span class="res-icon">🚀</span>
+      <span class="res-badge badge-soon">Próximamente</span>
+      <h3>Más recursos en camino</h3>
+      <p>Estamos preparando packs de sonidos, plantillas extra y más herramientas para ayudarte a crecer más rápido.</p>
+      <div class="res-btn blue">Muy pronto...</div>
+    </div>
+  </div>
 </div>
 
 <footer>
-  Hecho con ❤️ para creadores · Made for creators &nbsp;·&nbsp; <a href="#">Shorts Academy</a>
+  Hecho para creadores que van en serio · <a href="#">Shorts Academy</a> ⚡
 </footer>
 
 <!-- MODAL -->
@@ -330,190 +419,97 @@
       </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
-    <div class="modal-body" id="modalBody">
-      <div class="modal-placeholder" id="placeholder">
-        <h3>✏️ Esta guía aún no tiene contenido</h3>
-        <p>Haz clic en el botón de abajo para agregar tu contenido.<br>Puedes usar texto, listas y encabezados.</p>
-        <button class="edit-btn" onclick="startEdit()">+ Agregar contenido · Add content</button>
-      </div>
-      <div class="content-display" id="contentDisplay" style="display:none;"></div>
-      <textarea class="content-area" id="contentArea" placeholder="Escribe aquí el contenido de esta guía... (puedes usar texto libre)
-
-Ejemplo:
-# Sección principal
-- Punto 1
-- Punto 2
-
-Write your guide content here..."></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-save" id="btnSave" onclick="saveContent()">💾 Guardar · Save</button>
-      <button class="btn-cancel" id="btnCancel" onclick="cancelEdit()">Cancelar · Cancel</button>
-    </div>
+    <div class="modal-body" id="modalBody"></div>
   </div>
 </div>
 
 <script>
-const docs = [
-  {
-    id: 'algoritmo',
-    icon: '🧠',
-    iconClass: 'icon-g1',
-    cardClass: 'card-g1',
-    lang: 'ES · EN',
-    title: 'El Algoritmo de Shorts · The Shorts Algorithm',
-    desc: 'Cómo funciona el sistema de recomendaciones y qué señales usa para distribuir tu contenido. How the recommendation engine works.',
-    tag: 'Fundamentos · Basics',
-  },
-  {
-    id: 'gancho',
-    icon: '🎣',
-    iconClass: 'icon-g2',
-    cardClass: 'card-g2',
-    lang: 'ES · EN',
-    title: 'El Gancho Perfecto · The Perfect Hook',
-    desc: 'Los primeros 3 segundos determinan todo. Técnicas para retener al espectador desde el primer frame. The first 3 seconds are everything.',
-    tag: 'Retención · Retention',
-  },
-  {
-    id: 'monetizacion',
-    icon: '💰',
-    iconClass: 'icon-g3',
-    cardClass: 'card-g3',
-    lang: 'ES · EN',
-    title: 'Monetización de Shorts · Shorts Monetization',
-    desc: 'RPM de Shorts, fondo de creadores, membresías, Super Thanks y estrategias para maximizar ingresos. RPM, creator fund and more.',
-    tag: 'Dinero · Money',
-  },
-  {
-    id: 'tendencias',
-    icon: '🔥',
-    iconClass: 'icon-g4',
-    cardClass: 'card-g4',
-    lang: 'ES · EN',
-    title: 'Tendencias y Sonidos Virales · Trends & Sounds',
-    desc: 'Cómo identificar trends antes de que exploten y usar audios virales para acelerar el alcance de tus Shorts.',
-    tag: 'Crecimiento · Growth',
-  },
-  {
-    id: 'frecuencia',
-    icon: '📅',
-    iconClass: 'icon-g5',
-    cardClass: 'card-g5',
-    lang: 'ES · EN',
-    title: 'Frecuencia y Consistencia · Frequency & Consistency',
-    desc: '¿Cuántos Shorts publicar por día o semana? Estrategia de publicación para crecer sin quemarte. Publishing strategy without burnout.',
-    tag: 'Estrategia · Strategy',
-  },
-  {
-    id: 'de0a1000',
-    icon: '🚀',
-    iconClass: 'icon-g6',
-    cardClass: 'card-g6',
-    lang: 'ES · EN',
-    title: 'De 0 a 1,000 Subs · 0 to 1K Subscribers',
-    desc: 'Roadmap completo para pasar de canal vacío a tu primer millar de suscriptores usando solo Shorts. Full roadmap for your first 1K subs.',
-    tag: 'Roadmap',
-  },
-];
-
-let currentDoc = null;
-let editMode = false;
-const storage = {};
-
-function renderCards() {
-  const grid = document.getElementById('docsGrid');
-  grid.innerHTML = docs.map(d => `
-    <div class="doc-card ${d.cardClass}" onclick="openDoc('${d.id}')">
-      <div class="card-icon ${d.iconClass}">${d.icon}</div>
-      <div class="card-lang">${d.lang}</div>
-      <h3>${d.title}</h3>
-      <p>${d.desc}</p>
-      <div class="card-footer">
-        <span class="card-tag">${d.tag}</span>
-        <span class="card-arrow">→</span>
+const docs = {
+  brainrot: {
+    icon:'🧠', iconClass:'icon-g1',
+    title:'Brain Rot Shorts con Roblox',
+    sub:'Scripts · Ideas virales · Gen-Z',
+    content:`
+      <h2>🧠 Prompt para Generar Ideas Virales</h2>
+      <p>Copia y pega este prompt en ChatGPT o Claude para generar 10 ideas de Shorts virales estilo "brain rot" con gameplay de Roblox.</p>
+      <div class="example-block">
+        <strong>Prompt de Ideas:</strong><br><br>
+        Eres un estratega de contenido viral para Shorts de YouTube estilo "brain rot" Gen-Z. Tu trabajo es generar ideas graciosas, caóticas y relacionables, estilo historia, diseñadas para ponerse sobre gameplay de Roblox.<br><br>
+        Cada Short debe sentirse sacado de la mente de un adolescente a las 2 AM — nostálgico, dramático y lleno de giros emocionales.<br><br>
+        El formato es: <strong>gameplay de Roblox = fondo, storytelling = primer plano.</strong><br><br>
+        Cada idea debe incluir:<br>
+        • Título clickbait (en MAYÚSCULAS, corto, emocional o absurdo)<br>
+        • Script de 20-40 segundos (hablado, rápido, humor Gen-Z)<br>
+        • Caption o meme tag opcional<br><br>
+        Genera 10 ideas virales de Brain Rot Shorts.
       </div>
-    </div>
-  `).join('');
-}
-
-function openDoc(id) {
-  currentDoc = docs.find(d => d.id === id);
-  document.getElementById('modalIcon').textContent = currentDoc.icon;
-  document.getElementById('modalIcon').className = 'modal-icon ' + currentDoc.iconClass;
-  document.getElementById('modalTitle').textContent = currentDoc.title;
-  document.getElementById('modalSub').textContent = currentDoc.tag + ' · ' + currentDoc.lang;
-  editMode = false;
-  renderModalContent();
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function renderModalContent() {
-  const saved = storage[currentDoc.id];
-  const placeholder = document.getElementById('placeholder');
-  const display = document.getElementById('contentDisplay');
-  const area = document.getElementById('contentArea');
-  const btnSave = document.getElementById('btnSave');
-  const btnCancel = document.getElementById('btnCancel');
-
-  area.classList.remove('visible');
-  btnSave.classList.remove('visible');
-  btnCancel.classList.remove('visible');
-
-  if (editMode) {
-    placeholder.style.display = 'none';
-    display.style.display = 'none';
-    area.classList.add('visible');
-    area.value = saved || '';
-    btnSave.classList.add('visible');
-    btnCancel.classList.add('visible');
-  } else if (saved) {
-    placeholder.style.display = 'none';
-    display.style.display = 'block';
-    display.innerHTML = renderContent(saved);
-  } else {
-    placeholder.style.display = 'block';
-    display.style.display = 'none';
+      <h2>🎙️ Prompt para Escribir el Script</h2>
+      <p>Una vez que tienes el título, usa este prompt para generar el guion completo.</p>
+      <div class="example-block">
+        <strong>Prompt de Script:</strong><br><br>
+        Escribe un guion de 20-40 segundos para un YouTube Short con gameplay de Roblox de fondo. El título es: <strong>[TU TÍTULO AQUÍ]</strong><br><br>
+        Sigue esta estructura:<br>
+        <div class="step"><div class="step-num">1</div><div><strong>GANCHO</strong> (2 seg) — Frase absurda o dramática que obliga a seguir viendo.</div></div>
+        <div class="step"><div class="step-num">2</div><div><strong>CONFLICTO</strong> (5-10 seg) — Mini historia o problema. Exagerado y dramático.</div></div>
+        <div class="step"><div class="step-num">3</div><div><strong>ESCALADA</strong> (10-20 seg) — Aumenta la tensión. Pensamientos internos y momentos WTF.</div></div>
+        <div class="step"><div class="step-num">4</div><div><strong>REMATE</strong> (5-10 seg) — Punchline relatable, giro inesperado o "L" dramático.</div></div>
+        <br>
+        Tono: monólogo interno Gen-Z. Máximo 120 palabras. Incluye cues de sonido entre paréntesis. Escribe como alguien hablando a cámara con sus amigos.
+      </div>
+      <h2>📝 Ejemplo Completo</h2>
+      <div class="example-block">
+        <strong>🎥 Título:</strong> CUANDO FINGES DORMIR Y ENTRA TU MAMÁ 💀<br><br>
+        <strong>🎙️ Script:</strong><br>
+        Bro... fingir que estás dormido es mi mejor actuación de la vida. Escucho pasos en las escaleras y de repente estoy respirando como si estuviera en sueño profundo. El 3DS está bajo la almohada, el celular boca abajo, y yo aquí haciendo método actoral de mi vida. (puerta abre) Entra. No me muevo. Ni parpadeo. Dice mi nombre. Nada. Me empieza a picar un ojo pero no puedo romper el personaje. Entonces dice, "¿Quieres ir a McDonald's?"... y caí en 0.2 segundos.<br><br>
+        <strong>🎧 Notas:</strong> Gameplay tranquilo de Roblox, leve eco de reverb, sonido de latido cuando entra.
+      </div>
+      <h2>🏷️ Tags recomendados</h2>
+      <p>
+        <span class="tag">#brainrot</span><span class="tag">#relatable</span><span class="tag">#childhood</span><span class="tag">#roblox</span><span class="tag">#shorts</span><span class="tag">#genz</span><span class="tag">#caughtin4k</span><span class="tag">#fyp</span><span class="tag">#viral</span><span class="tag">#storytime</span>
+      </p>`
+  },
+  canal: {
+    icon:'🎬', iconClass:'icon-g2',
+    title:'Kit Completo para tu Canal',
+    sub:'Nombre · Logo · SEO · Guiones · Miniaturas',
+    content:`
+      <h2>🧠 Nombre del Canal</h2>
+      <div class="example-block"><strong>Prompt:</strong><br><br>Dame 10 ideas originales de nombres para un canal de YouTube. Los nombres deben ser:<br>• Cortos (una palabra, máximo dos)<br>• Únicos y memorables, no genéricos<br>• Que evoquen misterio, inteligencia o curiosidad<br>• Abstractos pero con identidad de marca (como Zoufry, Atrium, Cipher, Meld, Fern)<br>• Ideales para videos de historia, crimen, tecnología y eventos inusuales<br>• Atemporales y sofisticados</div>
+      <h2>📝 Descripción del Canal</h2>
+      <div class="example-block"><strong>Prompt:</strong><br><br>Escribe una descripción atractiva y profesional para mi canal llamado <strong>[NOMBRE DEL CANAL]</strong>. El canal produce videos narrativos de alta calidad estilo documental: historia, crímenes, tecnología, misterios.<br><br>Debe:<br>• Empezar con un gancho poderoso<br>• Explicar qué lo hace único<br>• Integrar palabras clave de forma natural<br>• Tono premium, intrigante y confiable<br>• Terminar con llamada a la acción<br>• Entre 120 y 150 palabras</div>
+      <h2>🎨 Logo del Canal</h2>
+      <div class="example-block"><strong>Prompt para generar el logo:</strong><br><br>Diseño de logo para canal de YouTube, estilo minimalista. Fondo sólido y brillante que contraste con la letra. Muestra solo la primera letra del canal en el centro exacto. Tipografía moderna, gruesa y legible. Diseño plano y limpio, sin degradados ni sombras. Composición equilibrada para funcionar como foto de perfil. Sin texto adicional. Relación 1:1, resolución ultraalta.</div>
+      <h2>🏷️ Etiquetas del Canal</h2>
+      <div class="example-block"><strong>Prompt:</strong><br><br>Crea etiquetas optimizadas (hasta 500 caracteres) para el canal <strong>[NOMBRE]</strong>. Deben:<br>• Combinar palabras clave de alto volumen con términos de marca<br>• Centrarse en historia, crímenes, tecnología, misterios<br>• Mezclar SEO + identidad de marca<br>• Evitar etiquetas genéricas o irrelevantes</div>
+      <h2>🎬 Temas de Video</h2>
+      <div class="example-block"><strong>Prompt:</strong><br><br>Analiza los videos más exitosos de <strong>[CANAL DE REFERENCIA]</strong> y detecta temas recurrentes, estructuras narrativas y disparadores emocionales. Con base en eso, genera 5 ideas originales de documentales. Luego selecciona la más potente y escribe un guion completo con: gancho impactante, narración por capas, lenguaje cinematográfico y final memorable.</div>
+      <h2>🎙️ Guion Documental</h2>
+      <div class="example-block"><strong>Prompt:</strong><br><br>Escribe un guion narrativo sobre el tema <strong>[TEMA]</strong>. Tono humano, poético y cinematográfico. Debe:<br>• Abrir con un gancho potente<br>• Usar descripciones sensoriales y ritmo natural<br>• Integrar contexto real, giros y emociones<br>• Duración: [DURACIÓN]<br>• Final que deje huella emocional</div>
+      <h2>🖼️ Prompts Visuales</h2>
+      <div class="example-block"><strong>Con personas:</strong><br>Render 3D estilizado de figura humana sin rasgos, lisa y reflectante, en [ENTORNO]. Posición: [ACCIÓN]. Iluminación: [MOMENTO DEL DÍA]. Fondo desenfocado. Estilo cinematográfico. Render ultrarrealista.<br><br><strong>Sin personas:</strong><br>Render 3D estilizado de [ENTORNO u OBJETO]. Fondo simple y desenfocado. Iluminación coherente. Sin imperfecciones. Ángulo cinematográfico. Render ultrarrealista.</div>
+      <h2>🧩 Miniatura (Thumbnail)</h2>
+      <div class="example-block"><strong>Prompt:</strong><br><br>Render 3D hiperrealista, colores vibrantes y sombras profundas. Título: <strong>[TÍTULO]</strong>. Incluir:<br>• Figura humana estilizada sin rasgos (opcional)<br>• Texto grande tipo crimen (WANTED, HACKER, FBI)<br>• Elementos de investigación: mapas, carpetas, pantallas de código<br>• Espacio negativo para claridad visual<br>• Estilo profesional y altamente clicable</div>
+      <h2>🚀 SEO del Video</h2>
+      <div class="example-block"><strong>Prompt descripción:</strong><br>• Gancho breve y potente al inicio<br>• Integra palabras clave naturalmente<br>• Párrafos cortos<br>• Resumen intrigante de la historia<br>• Llamada a la acción (like, comenta, suscríbete)<br>• 5-8 hashtags al final<br>• Tono: profesional, humano y envolvente<br><br><strong>Prompt etiquetas:</strong><br>20-25 etiquetas sin #. Mezcla keywords de alto volumen y cola larga enfocadas en el tema del video.</div>`
   }
+};
+
+function openDoc(id){
+  const d=docs[id];
+  document.getElementById('modalIcon').textContent=d.icon;
+  document.getElementById('modalIcon').className='modal-icon '+d.iconClass;
+  document.getElementById('modalTitle').textContent=d.title;
+  document.getElementById('modalSub').textContent=d.sub;
+  document.getElementById('modalBody').innerHTML=`<div class="content-display">${d.content}</div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
 }
-
-function renderContent(text) {
-  return text
-    .split('\n')
-    .map(line => {
-      if (line.startsWith('# ')) return `<h3>${line.slice(2)}</h3>`;
-      if (line.startsWith('- ')) return `<li>${line.slice(2)}</li>`;
-      if (line.trim() === '') return '';
-      return `<p>${line}</p>`;
-    })
-    .join('')
-    .replace(/(<li>.*<\/li>)+/g, m => `<ul>${m}</ul>`);
-}
-
-function startEdit() { editMode = true; renderModalContent(); }
-
-function saveContent() {
-  storage[currentDoc.id] = document.getElementById('contentArea').value;
-  editMode = false;
-  renderModalContent();
-}
-
-function cancelEdit() { editMode = false; renderModalContent(); }
-
-function closeModal() {
+function closeModal(){
   document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-  currentDoc = null; editMode = false;
+  document.body.style.overflow='';
 }
-
-function closeIfOutside(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-renderCards();
+function closeIfOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 </script>
 </body>
 </html>
