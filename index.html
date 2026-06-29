@@ -1,432 +1,519 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GABOXZTV</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shorts Academy — Crece y Gana</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    :root {
-      --green: #00ff00;
-      --green-dim: #00cc00;
-      --bg: #0b0b0b;
-      --bg2: #111111;
-      --bg3: #1a1a1a;
-      --text: #ffffff;
-      --text-dim: rgba(255,255,255,0.6);
-    }
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --card: #1a1a24;
+    --border: rgba(255,255,255,0.08);
+    --text: #f0f0f5;
+    --muted: #8888a0;
+    --accent1: #7c5cfc;
+    --accent2: #fc5c7d;
+    --accent3: #43e97b;
+    --grad1: linear-gradient(135deg, #7c5cfc, #fc5c7d);
+    --grad2: linear-gradient(135deg, #43e97b, #38f9d7);
+    --grad3: linear-gradient(135deg, #f7971e, #ffd200);
+    --grad4: linear-gradient(135deg, #fc5c7d, #ff6b35);
+    --grad5: linear-gradient(135deg, #4facfe, #00f2fe);
+    --grad6: linear-gradient(135deg, #a18cd1, #fbc2eb);
+  }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: Arial, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-    header {
-      background-color: var(--bg3);
-      text-align: center;
-      padding: 36px 20px 28px;
-      border-bottom: 3px solid var(--green);
-      position: relative;
-      overflow: hidden;
-    }
-    header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,0,0.03) 3px, rgba(0,255,0,0.03) 4px);
-      pointer-events: none;
-    }
-    header h1 {
-      font-family: 'Press Start 2P', cursive;
-      color: var(--green);
-      font-size: clamp(14px, 3vw, 24px);
-      text-shadow: 0 0 20px rgba(0,255,0,0.5);
-      position: relative;
-    }
-    header p {
-      margin-top: 14px;
-      font-size: 13px;
-      color: var(--text-dim);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-      position: relative;
-    }
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 40px;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-size: 20px; font-weight: 700;
+    background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .nav-badge {
+    font-size: 12px; padding: 5px 14px;
+    border-radius: 20px;
+    background: rgba(124,92,252,0.15);
+    border: 1px solid rgba(124,92,252,0.3);
+    color: #a98bff;
+    font-weight: 500;
+  }
 
-    .nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 28px 20px;
-      background-color: var(--bg2);
-      border-bottom: 1px solid rgba(0,255,0,0.15);
-    }
+  /* HERO */
+  .hero {
+    padding: 160px 40px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(ellipse, rgba(124,92,252,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--muted); margin-bottom: 28px;
+    background: var(--card); padding: 6px 16px; border-radius: 20px;
+    border: 1px solid var(--border);
+  }
+  .hero-eyebrow span { color: var(--accent3); font-weight: 600; }
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 80px);
+    font-weight: 800; line-height: 1.05;
+    letter-spacing: -2px; margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: normal; background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p {
+    font-size: 18px; color: var(--muted); max-width: 560px; margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-size: 32px; font-weight: 700;
+    background: var(--grad2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
 
-    .btn {
-      background-color: transparent;
-      color: var(--green);
-      padding: 12px 18px;
-      border: 2px solid var(--green);
-      border-radius: 4px;
-      cursor: pointer;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 10px;
-      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
-    }
-    .btn:hover {
-      background-color: rgba(0,255,0,0.1);
-      box-shadow: 0 0 12px rgba(0,255,0,0.4);
-      transform: scale(1.04);
-    }
-    .btn.active {
-      background-color: var(--green);
-      color: #000;
-      box-shadow: 0 0 16px rgba(0,255,0,0.5);
-    }
+  /* DOCS GRID */
+  .section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+  .section-title {
+    font-size: 13px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--muted); margin-bottom: 48px;
+  }
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
 
-    .aviso {
-      max-width: 700px;
-      margin: 20px auto 0;
-      padding: 10px 16px;
-      background: rgba(0,255,0,0.06);
-      border-left: 3px solid var(--green-dim);
-      border-radius: 0 4px 4px 0;
-      font-size: 12px;
-      color: var(--text-dim);
-      line-height: 1.6;
-      text-align: left;
-    }
+  /* DOC CARD */
+  .doc-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .doc-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); }
+  .doc-card:hover::before { opacity: 1; }
 
-    .seccion {
-      display: none;
-      padding: 36px 20px;
-      background-color: var(--bg2);
-      min-height: 40vh;
-      animation: fadeIn 0.2s ease;
-    }
-    .seccion.visible { display: block; }
+  .card-g1::before { background: var(--grad1); }
+  .card-g2::before { background: var(--grad2); }
+  .card-g3::before { background: var(--grad3); }
+  .card-g4::before { background: var(--grad4); }
+  .card-g5::before { background: var(--grad5); }
+  .card-g6::before { background: var(--grad6); }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+  .card-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 20px;
+  }
+  .icon-g1 { background: rgba(124,92,252,0.15); }
+  .icon-g2 { background: rgba(67,233,123,0.15); }
+  .icon-g3 { background: rgba(255,210,0,0.15); }
+  .icon-g4 { background: rgba(252,92,125,0.15); }
+  .icon-g5 { background: rgba(79,172,254,0.15); }
+  .icon-g6 { background: rgba(161,140,209,0.15); }
 
-    .seccion h2 {
-      font-family: 'Press Start 2P', cursive;
-      color: var(--green);
-      font-size: clamp(11px, 2vw, 16px);
-      text-align: center;
-      margin-bottom: 28px;
-    }
+  .card-lang {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--muted); margin-bottom: 8px;
+  }
+  .doc-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; }
+  .doc-card p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .card-tag {
+    font-size: 11px; padding: 3px 10px; border-radius: 20px;
+    background: rgba(255,255,255,0.06); color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .card-arrow { font-size: 18px; color: var(--muted); transition: transform 0.2s; }
+  .doc-card:hover .card-arrow { transform: translateX(4px); }
 
-    .juegos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    width: 100%; max-width: 700px;
+    max-height: 85vh;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .modal-header {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 16px;
+  }
+  .modal-icon-title { display: flex; align-items: center; gap: 16px; }
+  .modal-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .modal-title-group h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .modal-title-group span { font-size: 13px; color: var(--muted); }
+  .modal-close {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 24px; padding: 4px;
+    border-radius: 8px; flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+  .modal-body {
+    padding: 32px;
+    overflow-y: auto;
+    flex: 1;
+  }
+  .modal-placeholder {
+    background: rgba(255,255,255,0.03);
+    border: 1px dashed rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .modal-placeholder h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .modal-placeholder p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .edit-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 20px;
+    background: rgba(124,92,252,0.15);
+    border: 1px solid rgba(124,92,252,0.3);
+    color: #a98bff;
+    padding: 10px 20px; border-radius: 10px;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .edit-btn:hover { background: rgba(124,92,252,0.25); }
 
-    .juego-card {
-      background: var(--bg3);
-      border: 1px solid rgba(0,255,0,0.2);
-      border-radius: 6px;
-      padding: 18px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: border-color 0.2s;
-    }
-    .juego-card:hover { border-color: rgba(0,255,0,0.5); }
+  /* EDIT MODE */
+  .content-area {
+    display: none;
+    width: 100%;
+    min-height: 300px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(124,92,252,0.3);
+    border-radius: 12px;
+    padding: 20px;
+    color: var(--text);
+    font-size: 15px; line-height: 1.8;
+    resize: vertical;
+    font-family: inherit;
+  }
+  .content-area.visible { display: block; }
+  .content-display {
+    font-size: 15px; line-height: 1.8; color: var(--text);
+  }
+  .content-display h3 { font-size: 17px; font-weight: 600; margin: 20px 0 10px; }
+  .content-display p { margin-bottom: 12px; color: #c0c0d0; }
+  .content-display ul { padding-left: 20px; margin-bottom: 12px; }
+  .content-display li { margin-bottom: 6px; color: #c0c0d0; }
+  .modal-actions {
+    display: flex; gap: 10px; padding: 20px 32px;
+    border-top: 1px solid var(--border);
+  }
+  .btn-save {
+    background: var(--grad1); border: none; color: white;
+    padding: 10px 24px; border-radius: 10px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    display: none;
+  }
+  .btn-save.visible { display: block; }
+  .btn-cancel {
+    background: none; border: 1px solid var(--border); color: var(--muted);
+    padding: 10px 20px; border-radius: 10px;
+    font-size: 14px; cursor: pointer; display: none;
+  }
+  .btn-cancel.visible { display: block; }
 
-    .juego-nombre {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 9px;
-      color: var(--green);
-    }
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 60px 40px;
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 14px;
+  }
+  footer a { color: var(--accent1); text-decoration: none; }
 
-    .btn-descarga {
-      display: inline-block;
-      background-color: var(--green);
-      color: #000;
-      padding: 8px 14px;
-      border-radius: 4px;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 8px;
-      text-decoration: none;
-      text-align: center;
-      transition: opacity 0.15s, transform 0.1s;
-    }
-    .btn-descarga:hover { opacity: 0.85; transform: scale(1.03); }
-
-    .proximo {
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 13px;
-      padding: 40px 0;
-    }
-
-    .enlaces-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .enlace-card {
-      background: var(--bg3);
-      border: 1px solid rgba(0,255,0,0.2);
-      border-radius: 6px;
-      padding: 16px;
-      text-align: center;
-      text-decoration: none;
-      color: var(--green);
-      font-size: 13px;
-      transition: background 0.15s, border-color 0.15s;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .enlace-card:hover {
-      background: rgba(0,255,0,0.08);
-      border-color: rgba(0,255,0,0.5);
-    }
-    .enlace-icono { font-size: 22px; }
-    .enlace-nombre { font-family: 'Press Start 2P', cursive; font-size: 8px; }
-    .enlace-desc { font-size: 11px; color: var(--text-dim); }
-
-    footer {
-      margin-top: auto;
-      text-align: center;
-      padding: 16px;
-      background-color: #0f0f0f;
-      font-size: 11px;
-      color: var(--text-dim);
-      border-top: 1px solid rgba(0,255,0,0.1);
-    }
-
-    .skin-fixed {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      width: 72px;
-      opacity: 0.55;
-      z-index: 999;
-      pointer-events: none;
-    }
-
-    @media (max-width: 480px) {
-      .skin-fixed { width: 50px; bottom: 10px; right: 10px; }
-    }
-
-  </style>
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 120px 20px 70px; }
+    .section { padding: 60px 20px; }
+    .hero-stats { gap: 28px; }
+    .modal-header { padding: 20px; }
+    .modal-body { padding: 20px; }
+    .modal-actions { padding: 16px 20px; }
+  }
+</style>
 </head>
 <body>
 
-<header>
-  <h1>GABOXZTV</h1>
-  <p>Página inspirada en juegos de optimización.<br>Todos los links de OptiJuegos disponibles aquí.</p>
-</header>
-
-<nav class="nav">
-  <button class="btn" onclick="toggle('menos2gb', this)">Juegos &lt; 2 GB</button>
-  <button class="btn" onclick="toggle('menos4gb', this)">Juegos &lt; 4 GB</button>
-  <button class="btn" onclick="toggle('programas', this)">Programas</button>
-  <button class="btn" onclick="toggle('enlaces', this)">Enlaces</button>
-  <button class="btn" onclick="toggle('faq', this)">❓ FAQ</button>
+<nav>
+  <div class="logo">⚡ Shorts Academy</div>
+  <div class="nav-badge">🌐 ES · EN</div>
 </nav>
 
-<div style="max-width:700px; margin: 20px auto; padding: 0 20px;">
-  <div class="aviso">
-    ⚠️ Los archivos no tienen virus. El antivirus los detecta por el crack que incluyen los juegos.
-  </div>
-</div>
-
-<div id="menos2gb" class="seccion">
-  <h2>Juegos &lt; 2 GB</h2>
-  <div class="juegos-grid">
-    <div class="juego-card">
-      <div class="juego-nombre">Geometry Dash</div>
-      <a href="https://www.mediafire.com/file/kybq76zj8r8nu5i/GeometryDash_normal_un_poco_optimizado.apk/file" target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
+<section class="hero">
+  <div class="hero-eyebrow">📱 <span>Guías exclusivas</span> para dominar YouTube Shorts</div>
+  <h1>Crece rápido.<br><em>Gana en serio.</em></h1>
+  <p>Todo lo que necesitas saber para construir un canal de Shorts desde cero, conseguir millones de vistas y monetizarlo al máximo.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Guías completas · Complete guides</div>
     </div>
-    <div class="juego-card">
-      <div class="juego-nombre">Terraria</div>
-      <a href="https://www.mediafire.com/file/f2ho9pm4fqwwyyz/terrari+optimizada+v1+GABOXZTV.7z/file" target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
+    <div class="stat">
+      <div class="stat-num">ES/EN</div>
+      <div class="stat-label">Bilingüe · Bilingual</div>
     </div>
-    <div class="juego-card">
-      <div class="juego-nombre">WorldBox</div>
-      <a href="https://www.mediafire.com/file/5hlhd9iwqlzp6et/worldbox.7z/file" target="_blank" class="btn-descarga">⬇ Descargar (MediaFire)</a>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Editable · Ready to edit</div>
     </div>
   </div>
+</section>
+
+<div class="section">
+  <div class="section-title">📚 Documentación · Documentation</div>
+  <div class="docs-grid" id="docsGrid"></div>
 </div>
 
-<div id="menos4gb" class="seccion">
-  <h2>Juegos &lt; 4 GB</h2>
-  <div class="proximo">🕹 Próximamente…</div>
-</div>
+<footer>
+  Hecho con ❤️ para creadores · Made for creators &nbsp;·&nbsp; <a href="#">Shorts Academy</a>
+</footer>
 
-<div id="programas" class="seccion">
-  <h2>Programas</h2>
-  <div class="juegos-grid">
-    <div class="juego-card">
-      <div class="juego-nombre">7-Zip</div>
-      <p style="font-size:12px; color:var(--text-dim); line-height:1.5;">Necesario para abrir archivos .7z de los juegos.</p>
-      <a href="https://www.7-zip.org/download.html" target="_blank" class="btn-descarga">⬇ Descargar (Oficial)</a>
-    </div>
-  </div>
-</div>
-
-<div id="enlaces" class="seccion">
-  <h2>Mis enlaces</h2>
-  <div class="enlaces-grid">
-    <a href="https://m.youtube.com/@OptiProjects" target="_blank" class="enlace-card">
-      <span class="enlace-icono">🎮</span>
-      <span class="enlace-nombre">OptiProjects</span>
-      <span class="enlace-desc">Canal de YouTube</span>
-    </a>
-    <a href="https://optijuegos.net/" target="_blank" class="enlace-card">
-      <span class="enlace-icono">🔗</span>
-      <span class="enlace-nombre">OptiJuegos</span>
-      <span class="enlace-desc">Sitio web</span>
-    </a>
-    <a href="https://kick.com/xzgabotv" target="_blank" class="enlace-card">
-      <span class="enlace-icono">🟣</span>
-      <span class="enlace-nombre">Kick</span>
-      <span class="enlace-desc">xzgabotv</span>
-    </a>
-    <a href="https://www.youtube.com/@zgaboxz" target="_blank" class="enlace-card">
-      <span class="enlace-icono">▶</span>
-      <span class="enlace-nombre">YouTube</span>
-      <span class="enlace-desc">Mi canal</span>
-    </a>
-    <a href="https://docs.google.com/document/d/e/2PACX-1vQDQUYi7IMbrhOmVjssl-Dz6E5SPF457ar8yMFhFeWMKnw90YPKKCZI-A8uz9sneIzn_qE1-Q8Uf1sx/pub" target="_blank" class="enlace-card">
-      <span class="enlace-icono">📄</span>
-      <span class="enlace-nombre">Sobre mí</span>
-      <span class="enlace-desc">Leer más</span>
-    </a>
-  </div>
-</div>
-
-<footer>© 2026 GABOXZTV</footer>
-
-<img src="img/mi skin.png" alt="GaboxzTV" class="skin-fixed">
-
-<!-- FAQ -->
-<style>
-  .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-  .faq-item { background: #1a1a1a; border: 1px solid rgba(0,255,0,0.2); border-radius: 6px; overflow: hidden; }
-  .faq-pregunta {
-    width: 100%; text-align: left; background: none; border: none; color: #00ff00;
-    font-family: Arial, sans-serif; font-size: 13px; padding: 14px 18px;
-    cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px;
-  }
-  .faq-pregunta:hover { background: rgba(0,255,0,0.05); }
-  .faq-pregunta span { font-size: 16px; transition: transform 0.2s; }
-  .faq-pregunta.open span { transform: rotate(45deg); }
-  .faq-respuesta {
-    display: none; padding: 0 18px 14px; font-size: 13px;
-    color: rgba(255,255,255,0.7); line-height: 1.7; border-top: 1px solid rgba(0,255,0,0.1);
-    padding-top: 12px;
-  }
-  .faq-respuesta.visible { display: block; }
-</style>
-
-<div id="faq" class="seccion">
-  <h2>Preguntas Frecuentes</h2>
-  <div class="faq-list">
-
-    <div class="faq-item">
-      <button class="faq-pregunta" onclick="toggleFaq(this)">
-        ¿Los juegos tienen virus? <span>+</span>
-      </button>
-      <div class="faq-respuesta">
-        No tienen virus. El antivirus los detecta por el crack que incluyen, pero son completamente seguros. Puedes añadirlos como excepción en tu antivirus para que no los bloquee.
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeIfOutside(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-icon-title">
+        <div class="modal-icon" id="modalIcon"></div>
+        <div class="modal-title-group">
+          <h2 id="modalTitle"></h2>
+          <span id="modalSub"></span>
+        </div>
       </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
-
-    <div class="faq-item">
-      <button class="faq-pregunta" onclick="toggleFaq(this)">
-        ¿Cómo abro los archivos .7z? <span>+</span>
-      </button>
-      <div class="faq-respuesta">
-        Necesitas el programa 7-Zip. Lo puedes descargar gratis en la sección de Programas de esta web. Una vez instalado, haz clic derecho sobre el archivo .7z y selecciona "Extraer aquí".
+    <div class="modal-body" id="modalBody">
+      <div class="modal-placeholder" id="placeholder">
+        <h3>✏️ Esta guía aún no tiene contenido</h3>
+        <p>Haz clic en el botón de abajo para agregar tu contenido.<br>Puedes usar texto, listas y encabezados.</p>
+        <button class="edit-btn" onclick="startEdit()">+ Agregar contenido · Add content</button>
       </div>
-    </div>
+      <div class="content-display" id="contentDisplay" style="display:none;"></div>
+      <textarea class="content-area" id="contentArea" placeholder="Escribe aquí el contenido de esta guía... (puedes usar texto libre)
 
-    <div class="faq-item">
-      <button class="faq-pregunta" onclick="toggleFaq(this)">
-        ¿Por qué el link de descarga no funciona? <span>+</span>
-      </button>
-      <div class="faq-respuesta">
-        A veces MediaFire tiene caídas temporales. Espera unos minutos e intenta de nuevo. Si el problema persiste, contáctame por mis redes sociales y lo reviso.
-      </div>
-    </div>
+Ejemplo:
+# Sección principal
+- Punto 1
+- Punto 2
 
-    <div class="faq-item">
-      <button class="faq-pregunta" onclick="toggleFaq(this)">
-        ¿Los juegos están en español? <span>+</span>
-      </button>
-      <div class="faq-respuesta">
-        Depende del juego. La mayoría sí están disponibles en español dentro de las opciones del juego. Si tienes dudas de uno en específico, pregúntame en mis redes.
-      </div>
+Write your guide content here..."></textarea>
     </div>
-
-    <div class="faq-item">
-      <button class="faq-pregunta" onclick="toggleFaq(this)">
-        ¿Puedo jugar online con estas versiones? <span>+</span>
-      </button>
-      <div class="faq-respuesta">
-        La mayoría son versiones de un solo jugador o modo historia. El modo online generalmente no está disponible en estas versiones optimizadas.
-      </div>
+    <div class="modal-actions">
+      <button class="btn-save" id="btnSave" onclick="saveContent()">💾 Guardar · Save</button>
+      <button class="btn-cancel" id="btnCancel" onclick="cancelEdit()">Cancelar · Cancel</button>
     </div>
-
-    <div class="faq-item">
-      <button class="faq-pregunta" onclick="toggleFaq(this)">
-        ¿Cada cuánto suben juegos nuevos? <span>+</span>
-      </button>
-      <div class="faq-respuesta">
-        Subo juegos nuevos regularmente. Sígueme en YouTube o Kick para enterarte cuando haya novedades.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-pregunta" onclick="toggleFaq(this)">
-        ¿Funcionan en PC de bajos recursos? <span>+</span>
-      </button>
-      <div class="faq-respuesta">
-        Sí, todos los juegos que subo están optimizados para correr bien en PCs con pocos recursos. Si tienes problemas de rendimiento, baja la calidad gráfica dentro del juego.
-      </div>
-    </div>
-
   </div>
 </div>
 
 <script>
-  function toggle(id, btn) {
-    const sec = document.getElementById(id);
-    const isOpen = sec.classList.contains('visible');
-    document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
-    document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
-    if (!isOpen) { sec.classList.add('visible'); btn.classList.add('active'); }
-  }
+const docs = [
+  {
+    id: 'algoritmo',
+    icon: '🧠',
+    iconClass: 'icon-g1',
+    cardClass: 'card-g1',
+    lang: 'ES · EN',
+    title: 'El Algoritmo de Shorts · The Shorts Algorithm',
+    desc: 'Cómo funciona el sistema de recomendaciones y qué señales usa para distribuir tu contenido. How the recommendation engine works.',
+    tag: 'Fundamentos · Basics',
+  },
+  {
+    id: 'gancho',
+    icon: '🎣',
+    iconClass: 'icon-g2',
+    cardClass: 'card-g2',
+    lang: 'ES · EN',
+    title: 'El Gancho Perfecto · The Perfect Hook',
+    desc: 'Los primeros 3 segundos determinan todo. Técnicas para retener al espectador desde el primer frame. The first 3 seconds are everything.',
+    tag: 'Retención · Retention',
+  },
+  {
+    id: 'monetizacion',
+    icon: '💰',
+    iconClass: 'icon-g3',
+    cardClass: 'card-g3',
+    lang: 'ES · EN',
+    title: 'Monetización de Shorts · Shorts Monetization',
+    desc: 'RPM de Shorts, fondo de creadores, membresías, Super Thanks y estrategias para maximizar ingresos. RPM, creator fund and more.',
+    tag: 'Dinero · Money',
+  },
+  {
+    id: 'tendencias',
+    icon: '🔥',
+    iconClass: 'icon-g4',
+    cardClass: 'card-g4',
+    lang: 'ES · EN',
+    title: 'Tendencias y Sonidos Virales · Trends & Sounds',
+    desc: 'Cómo identificar trends antes de que exploten y usar audios virales para acelerar el alcance de tus Shorts.',
+    tag: 'Crecimiento · Growth',
+  },
+  {
+    id: 'frecuencia',
+    icon: '📅',
+    iconClass: 'icon-g5',
+    cardClass: 'card-g5',
+    lang: 'ES · EN',
+    title: 'Frecuencia y Consistencia · Frequency & Consistency',
+    desc: '¿Cuántos Shorts publicar por día o semana? Estrategia de publicación para crecer sin quemarte. Publishing strategy without burnout.',
+    tag: 'Estrategia · Strategy',
+  },
+  {
+    id: 'de0a1000',
+    icon: '🚀',
+    iconClass: 'icon-g6',
+    cardClass: 'card-g6',
+    lang: 'ES · EN',
+    title: 'De 0 a 1,000 Subs · 0 to 1K Subscribers',
+    desc: 'Roadmap completo para pasar de canal vacío a tu primer millar de suscriptores usando solo Shorts. Full roadmap for your first 1K subs.',
+    tag: 'Roadmap',
+  },
+];
 
-  function toggleFaq(btn) {
-    const respuesta = btn.nextElementSibling;
-    const isOpen = respuesta.classList.contains('visible');
-    document.querySelectorAll('.faq-respuesta').forEach(r => r.classList.remove('visible'));
-    document.querySelectorAll('.faq-pregunta').forEach(b => b.classList.remove('open'));
-    if (!isOpen) { respuesta.classList.add('visible'); btn.classList.add('open'); }
+let currentDoc = null;
+let editMode = false;
+const storage = {};
+
+function renderCards() {
+  const grid = document.getElementById('docsGrid');
+  grid.innerHTML = docs.map(d => `
+    <div class="doc-card ${d.cardClass}" onclick="openDoc('${d.id}')">
+      <div class="card-icon ${d.iconClass}">${d.icon}</div>
+      <div class="card-lang">${d.lang}</div>
+      <h3>${d.title}</h3>
+      <p>${d.desc}</p>
+      <div class="card-footer">
+        <span class="card-tag">${d.tag}</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openDoc(id) {
+  currentDoc = docs.find(d => d.id === id);
+  document.getElementById('modalIcon').textContent = currentDoc.icon;
+  document.getElementById('modalIcon').className = 'modal-icon ' + currentDoc.iconClass;
+  document.getElementById('modalTitle').textContent = currentDoc.title;
+  document.getElementById('modalSub').textContent = currentDoc.tag + ' · ' + currentDoc.lang;
+  editMode = false;
+  renderModalContent();
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderModalContent() {
+  const saved = storage[currentDoc.id];
+  const placeholder = document.getElementById('placeholder');
+  const display = document.getElementById('contentDisplay');
+  const area = document.getElementById('contentArea');
+  const btnSave = document.getElementById('btnSave');
+  const btnCancel = document.getElementById('btnCancel');
+
+  area.classList.remove('visible');
+  btnSave.classList.remove('visible');
+  btnCancel.classList.remove('visible');
+
+  if (editMode) {
+    placeholder.style.display = 'none';
+    display.style.display = 'none';
+    area.classList.add('visible');
+    area.value = saved || '';
+    btnSave.classList.add('visible');
+    btnCancel.classList.add('visible');
+  } else if (saved) {
+    placeholder.style.display = 'none';
+    display.style.display = 'block';
+    display.innerHTML = renderContent(saved);
+  } else {
+    placeholder.style.display = 'block';
+    display.style.display = 'none';
   }
+}
+
+function renderContent(text) {
+  return text
+    .split('\n')
+    .map(line => {
+      if (line.startsWith('# ')) return `<h3>${line.slice(2)}</h3>`;
+      if (line.startsWith('- ')) return `<li>${line.slice(2)}</li>`;
+      if (line.trim() === '') return '';
+      return `<p>${line}</p>`;
+    })
+    .join('')
+    .replace(/(<li>.*<\/li>)+/g, m => `<ul>${m}</ul>`);
+}
+
+function startEdit() { editMode = true; renderModalContent(); }
+
+function saveContent() {
+  storage[currentDoc.id] = document.getElementById('contentArea').value;
+  editMode = false;
+  renderModalContent();
+}
+
+function cancelEdit() { editMode = false; renderModalContent(); }
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  currentDoc = null; editMode = false;
+}
+
+function closeIfOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+renderCards();
 </script>
-
 </body>
 </html>
